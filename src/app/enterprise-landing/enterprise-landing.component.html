@@ -1,0 +1,292 @@
+@if(!userSubscribed) {
+<main class="container-fluid">
+  <!-- Navbar Section -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark p-2">
+    <div class="container d-flex justify-content-between mx-auto">
+      <a class="navbar-brand text-light logoImg" href="https://www.bringjal.com/enterprise"></a>
+      <button class="btn btn-outline-success SubscribeBtn" type="submit">Subscribe</button>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <article class="containerBg">
+    <div class="HeroContainer">
+      <div class="text-center textHero">
+        <h1>YOUR BRAIN SHOULD CONTAIN 73% OF WATER, NOT THE HASSLES AROUND IT.</h1>
+        <!-- Button trigger modal -->
+        <button class="formBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Click here to end your drinking water woes
+        </button>
+      </div>
+      <div class="slant"></div>
+    </div>
+    <!-- Form Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              <i class="fas fa-newspaper"></i> Subscription Form
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Enhanced Form inside the modal -->
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6 field">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Contact Name</label>
+                    <div class="input-group">
+                      <!-- <span class="input-group-text"><i class="fas fa-user-alt"></i></span> -->
+                      <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 field">
+                  <div class="mb-3">
+                    <label for="Ename" class="form-label">Enterprise Name</label>
+                    <div class="input-group">
+                      <!-- <span class="input-group-text"><i class="fas fa-industry"></i></span> -->
+                      <input type="text" class="form-control" id="Ename" placeholder="Enter enterprise name">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 field">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Enterprise Email</label>
+                    <div class="input-group">
+                      <!-- <span class="input-group-text"><i class="fas fa-envelope"></i></span> -->
+                      <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 field">
+                  <div class="mb-3">
+                    <label for="mobile" class="form-label">Phone Number</label>
+                    <div class="input-group">
+                      <!-- <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span> -->
+                      <input type="tel" class="form-control" id="mobile" placeholder="Enter your phone number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-3 w-100">
+                <button type="submit" class="btn btn-success p-2 w-75 mx-auto">
+                  Submit <i class="fas fa-sign-in-alt"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="modal-footer">
+            <div class="text-center mt-3r">
+              <button type="submit" class="btn btn-success p-2">
+                Submit <i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- Scroll Logos -->
+    <section class="scroll-logos">
+      <h3 class="text-center heading py-2">Our Partners</h3>
+      <div class="marquee-container">
+        <div class="marquee">
+          <div class="item" *ngFor="let item of images">
+            <img [src]="item.src" [alt]="item.alt" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cards -->
+    <section class="site-section">
+      <div class="container mx-auto py-5">
+        <div class="row mb-5">
+          <div class="col-12 text-center aos-init aos-animate" data-aos="fade-up">
+            <h2 class="heading font-weight-bold mb-3">How do we Bring Jal ?</h2>
+          </div>
+        </div>
+        <div class="row align-items-stretch">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4">
+                <img
+                  src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554769126/website/water_can_20_ltr_package.png"
+                  alt="water_can_20_ltr_package" loading="lazy" class="img">
+              </div>
+              <div class="px-2">
+                <h3>Subscribe with us</h3>
+                <p class="description">Join us by clicking on the above button and fill your details.</p>
+                <!-- <p class="linkViewMore"><a href="#">Learn More</a><span><i class="bi bi-arrow-right"></i>
+                  </span></p> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4">
+                <img
+                  src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771388/website/multiple_water_can_packages_with_bringjal.png"
+                  alt="multiple_water_can_packages_with_bringjal" loading="lazy" class="img">
+              </div>
+              <div class="px-2">
+                <h3>Finalise the package</h3>
+                <p class="description">Considering your needs and requirements, our team will customise the package
+                  accordingly.</p>
+                <!-- <p class="linkViewMore"><a href="#">Learn More</a><span><i class="bi bi-arrow-right"></i>
+                  </span></p> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 aos-init aos-animate" data-aos="fade-up">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4">
+                <img
+                  src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771391/website/water_can_delivery_to_office.png"
+                  alt="water_can_delivery_to_office" loading="lazy" class="img">
+              </div>
+              <div class="px-2">
+                <h3>Get it delivered</h3>
+                <p class="description">Water cans will be delivered to your enterprise without any hassle.</p>
+                <!-- <p class="linkViewMore"><a href="#">Learn More</a><span><i class="bi bi-arrow-right"></i>
+                  </span></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Cards -->
+    <!-- Lab reports from water supplier with Bringjal -->
+    <section class="site-section">
+      <div class="row">
+        <div class="col-12 col-md-6 p-0">
+          <div class="view">
+            <img
+              src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771438/website/bringjal_water_can_inhouse_lab_testing.jpg"
+              class="img-fluid" alt="Bringjal water can inhouse lab testing">
+            <div class="mask">
+              <h1 class="h1 display-4"><b>Assured quality</b></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 py-4 card">
+          <div class="row pb-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771438/website/quality_testing_with_bringjal_water_cans.png"
+                class="img-fluid" alt="Quality testing with bringjal water cans">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center">
+              <h3 class="h3">Lab reports from water supplier</h3>
+            </div>
+          </div>
+          <div class="row pt-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771437/website/timely_disposal_of_water_cans_with_bringjal.png"
+                class="img-fluid" alt="Timely disposal of water cans with Bringjal">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center">
+              <h3 class="h3">Timely disposal of water cans</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="row">
+        <div class="col-12 col-md-6 p-0 order-md-2">
+          <div class="view">
+            <img
+              src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771484/website/slot_based_delivery_with_bringjal.jpg"
+              class="img-fluid" alt="Bringjal water can inhouse lab testing">
+            <div class="mask">
+              <h1 class="h1 display-4"><b>Flexible Delivery</b></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 pt-4 pb-4 card">
+          <div class="row pb-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771482/website/water_can_supply_for_office_at_preferred_slot.png"
+                class="img-fluid" alt="water_can_supply_for_office_at_preferred_slot">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center">
+              <h3 class="h3">Flexibility to select delivery slots</h3>
+            </div>
+          </div>
+          <div class="row pt-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771482/website/water_can_delivery_for_corporate_events.png"
+                class="img-fluid" alt="water_can_delivery_for_corporate_events">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center mb-2">
+              <h3 class="h3">Order online for special events</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 p-0">
+          <div class="view">
+            <img
+              src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771506/website/invoice_for_every_order_with_bringjal.jpg"
+              class="img-fluid" alt="Bringjal water can inhouse lab testing">
+            <div class="mask">
+              <h1 class="h1 display-4"><b>Transparent billing</b></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 pt-4 pb-4 card">
+          <div class="row pb-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554772459/website/transparrent_billing_for_water_cans.png"
+                class="img-fluid" alt="transparent_billing_for_water_cans">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center">
+              <h3 class="h3">What you see is what you pay</h3>
+            </div>
+          </div>
+          <div class="row pt-3 cards">
+            <div class="col-md-2 text-center col-4">
+              <img
+                src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554771504/website/secure_payment_options_with_bringjal.png"
+                class="img-fluid" alt="secure_payment_options_with_bringjal">
+            </div>
+            <div class="col-md-10 col-8 d-flex align-items-center mb-2">
+              <h3 class="h3">Various payment modes</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Cards Section -->
+    <!-- Join Us -->
+    <section class="site-section">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="JoinBgImg">
+            <div class="HeroContainerJoin">
+              <div class="text-center textHero">
+                <h1>Join the BringJal family and experience the difference.</h1>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Join Us -->
+  </article>
+
+  <!-- End of Hero Section -->
+  <!-- Cards Section -->
+  <!-- End of Main Section -->
+  <app-footer></app-footer>
+</main>
+}

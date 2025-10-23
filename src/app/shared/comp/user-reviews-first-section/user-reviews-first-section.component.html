@@ -1,0 +1,139 @@
+<div class="relative w-full bg-white overflow-hidden">
+  <!-- Animated background shapes -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-40 -right-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute -bottom-40 -left-32 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+    ></div>
+  </div>
+
+  <div class="relative max-w-screen-2xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <p
+      class="text-2xl md:text-4xl leading-tight font-bold text-center bg-gradient-to-r from-cyan-800 via-cyan-600 to-cyan-700 bg-clip-text text-transparent"
+    >
+      What Our Users Say
+    </p>
+
+    <div class="relative max-w-5xl mx-auto my-6" #container>
+      <div class="relative overflow-visible">
+        <div
+          class="flex transition-transform duration-700 ease-out transform-gpu"
+          [style.transform]="'translateX(' + translateX + '%)'"
+          #slider
+        >
+          <div
+            *ngFor="let slide of testimonials; let i = index"
+            class="relative w-full flex-none md:px-4 px-0 transition-all duration-500 ease-out"
+            [class.opacity-100]="i === currentIndex"
+            [class.opacity-40]="i !== currentIndex"
+            [class.scale-100]="i === currentIndex"
+            [class.scale-90]="i !== currentIndex"
+            [class.z-20]="i === currentIndex"
+            [class.z-10]="i !== currentIndex"
+            [class.z-0]="i === currentIndex"
+            [class.filter]="i !== currentIndex"
+            [class.blur]="i !== currentIndex"
+          >
+            <div
+              class="bg-gradient-to-br from-slate-800/20 via-slate-900/10 to-slate-800/20 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 h-[500px] flex flex-col relative"
+            >
+              <!-- Profile Image with Glow -->
+              <div class="relative w-24 h-24 mx-auto mb-6 flex-shrink-0">
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full opacity-20 blur-lg animate-pulse"
+                ></div>
+                <div
+                  class="relative w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30"
+                >
+                  <img
+                    [src]="slide.image"
+                    [alt]="slide.name"
+                    class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+
+              <!-- Quote Icon -->
+              <div class="absolute top-4 left-4 text-gray-800/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-12 w-12"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                  />
+                </svg>
+              </div>
+
+              <!-- Content Container -->
+              <div class="flex-grow overflow-y-auto custom-scrollbar">
+                <!-- Testimonial Text -->
+                <p
+                  class="text-md md:text-lg font-medium mb-6 text-gray-900 leading-relaxed font-serif"
+                >
+                  {{ slide.text }}
+                </p>
+              </div>
+
+              <!-- Name (Fixed at bottom) -->
+              <div class="mt-4 flex-shrink-0">
+                <p
+                  class="text-gray-900 text-xl md:text-2xl font-semibold text-right"
+                >
+                  __ {{ slide.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation Buttons -->
+      <div class="flex justify-center space-x-6 my-8">
+        <button
+          (click)="prevSlide()"
+          [disabled]="currentIndex === 0"
+          class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-cyan-500/25 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button
+          (click)="nextSlide()"
+          [disabled]="currentIndex === testimonials.length - 1"
+          class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-cyan-500/25 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

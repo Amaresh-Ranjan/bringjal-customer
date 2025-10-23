@@ -1,0 +1,491 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+} @else {
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="header sticky top-0 z-50 bg-white shadow-sm py-4 mb-6">
+    <h1 class="text-center heading_1 text-cyan-800">Customer Support</h1>
+  </div>
+
+  <div class="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="space-y-8">
+      <!-- Success Message -->
+      @if(ticketSubmitted) {
+      <div class="">
+        <div
+          class="bg-green-50 border border-green-200 rounded-lg p-4 text-center"
+          role="alert"
+          aria-live="polite"
+        >
+          <h5 class="text-green-800 text-lg font-medium">
+            Your Ticket is Successfully Submitted. Our Team will Address Get
+            Back To You Within 2 Working Days.
+          </h5>
+        </div>
+      </div>
+      }
+
+      <!-- Support Form -->
+      @if(!ticketSubmitted) {
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100 transition-all duration-300 hover:shadow-xl mb-8"
+      >
+        <!-- Card Header -->
+        <div
+          class="bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-5 text-center"
+        >
+          <h2 class="heading_2 text-white tracking-tight">
+            Generate Support Ticket
+          </h2>
+          <p class="text-cyan-100 text-sm mt-1">
+            We're here to help! Please fill out the form below
+          </p>
+        </div>
+
+        <form [formGroup]="customerSupportForm" class="p-6 space-y-6">
+          <!-- Name Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-cyan-800" for="name">
+              <i class="fas fa-user-alt mr-2 text-cyan-600"></i>Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="w-full rounded-lg border-2 border-cyan-100 py-3 px-4 shadow-sm focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 bg-cyan-50 text-cyan-800 placeholder-cyan-400"
+              placeholder="Enter your full name"
+              [attr.aria-invalid]="
+                customerSupportForm.get('name').invalid &&
+                customerSupportForm.get('name').touched
+              "
+              aria-describedby="name-error"
+            />
+            @if (!customerSupportForm.get('name').valid &&
+            customerSupportForm.get('name').touched) {
+            <p
+              class="text-red-600 text-sm flex items-center mt-1"
+              id="name-error"
+              role="alert"
+            >
+              <i class="bi bi-exclamation-circle-fill mr-2"></i>
+              Name is required
+            </p>
+            }
+          </div>
+
+          <!-- Email Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-cyan-800" for="email">
+              <i class="fas fa-at mr-2 text-cyan-600"></i>Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="w-full rounded-lg border-2 border-cyan-100 py-3 px-4 shadow-sm focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 bg-cyan-50 text-cyan-800 placeholder-cyan-400"
+              placeholder="Enter your full name"
+              [attr.aria-invalid]="
+                customerSupportForm.get('email').invalid &&
+                customerSupportForm.get('email').touched
+              "
+              aria-describedby="email-error"
+            />
+            @if (!customerSupportForm.get('email').valid &&
+            customerSupportForm.get('email').touched) {
+            <p
+              class="text-red-600 text-sm flex items-center mt-1"
+              id="email-error"
+              role="alert"
+            >
+              <i class="bi bi-exclamation-circle-fill mr-2"></i>
+              @if (customerSupportForm.get('email').errors?.['required']) {
+              Email is required } @else if
+              (customerSupportForm.get('email').errors?.['pattern']) { Please
+              enter a valid email address }
+            </p>
+            }
+          </div>
+
+          <!-- Mobile Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-cyan-800" for="mobile">
+              <i class="fas fa-mobile-alt mr-2 text-cyan-600"></i>Mobile Number
+            </label>
+            <input
+              type="number"
+              id="mobile"
+              formControlName="mobile"
+              class="w-full rounded-lg border-2 border-cyan-100 py-3 px-4 shadow-sm focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 bg-cyan-50 text-cyan-800 placeholder-cyan-400"
+              placeholder="Enter your full name"
+              [attr.aria-invalid]="
+                customerSupportForm.get('mobile').invalid &&
+                customerSupportForm.get('mobile').touched
+              "
+              aria-describedby="mobile-error"
+            />
+            @if (!customerSupportForm.get('mobile').valid &&
+            customerSupportForm.get('mobile').touched) {
+            <p
+              class="text-red-600 text-sm flex items-center mt-1"
+              id="mobile-error"
+              role="alert"
+            >
+              <i class="bi bi-exclamation-circle-fill mr-2"></i>
+              @if (customerSupportForm.get('mobile').errors?.['required']) {
+              Mobile number is required } @else if
+              (customerSupportForm.get('mobile').errors?.['pattern']) { Please
+              enter a valid mobile number }
+            </p>
+            }
+          </div>
+
+          <!-- Subject Selection -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-cyan-800">
+              <i class="fas fa-tag mr-2 text-cyan-600"></i>Subject
+            </label>
+            <select
+              formControlName="subject"
+              class="w-full rounded-lg border-2 border-cyan-100 py-3 px-4 shadow-sm focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 bg-cyan-50 text-cyan-800 cursor-pointer"
+            >
+              <option value="">Select an Option</option>
+              @for (option of options; track $index) {
+              <option [value]="option">{{ option }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Description Input -->
+          <div class="space-y-2">
+            <label
+              class="block text-sm font-medium text-cyan-800"
+              for="description"
+            >
+              <i class="fas fa-align-left mr-2 text-cyan-600"></i>Description
+            </label>
+            <textarea
+              id="description"
+              formControlName="description"
+              rows="4"
+              class="w-full rounded-lg border-2 border-cyan-100 py-3 px-4 shadow-sm focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 bg-cyan-50 text-cyan-800 placeholder-cyan-400"
+              placeholder="Enter your full name"
+              [attr.aria-invalid]="
+                customerSupportForm.get('description').invalid &&
+                customerSupportForm.get('description').touched
+              "
+              aria-describedby="description-error"
+            ></textarea>
+            @if (!customerSupportForm.get('description').valid &&
+            customerSupportForm.get('description').touched) {
+            <p
+              class="text-red-600 text-sm flex items-center mt-1"
+              id="description-error"
+              role="alert"
+            >
+              <i class="bi bi-exclamation-circle-fill mr-2"></i>
+              Description is required
+            </p>
+            }
+          </div>
+
+          <!-- File Upload -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-cyan-800">
+              <i class="fas fa-paperclip mr-2 text-cyan-600"></i>Attachments
+              (Optional)
+            </label>
+            <div class="flex flex-col sm:flex-row gap-3" #fileUploadContainer>
+              <div class="flex-1">
+                <label
+                  class="flex flex-col items-center px-4 py-6 bg-cyan-50 text-cyan-700 rounded-lg border-2 border-dashed border-cyan-200 cursor-pointer hover:bg-cyan-100 transition-colors relative"
+                >
+                  <i class="fas fa-cloud-upload-alt text-2xl mb-2"></i>
+                  <div class="text-sm text-center">
+                    <div class="font-medium text-cyan-600">
+                      <span *ngIf="!fileInput?.files?.length"
+                        >Click to upload</span
+                      >
+                      <span
+                        *ngIf="fileInput?.files?.length"
+                        class="text-cyan-800"
+                      >
+                        {{ fileInput?.files?.length }} file(s) selected
+                      </span>
+                    </div>
+                    <div *ngIf="fileInput?.files?.length" class="mt-1">
+                      <div
+                        *ngFor="let file of fileInput?.files"
+                        class="text-md text-cyan-600 max-w-xs"
+                      >
+                        {{ file.name }}
+                      </div>
+                    </div>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="hidden"
+                    (change)="onFileChange($event, fileInput)"
+                    #fileInput
+                    aria-label="Choose file to upload"
+                    multiple
+                  />
+                </label>
+              </div>
+
+              <button
+                type="button"
+                (click)="onUpload()"
+                class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 self-center"
+                [disabled]="!fileInput?.files?.length"
+                [class.opacity-50]="!fileInput?.files?.length"
+                [class.cursor-not-allowed]="!fileInput?.files?.length"
+              >
+                <i class="fas fa-upload"></i>
+                <span>Upload</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Preview -->
+          @if (imagesArray.length > 0) {
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            role="list"
+            aria-label="Uploaded images"
+          >
+            @for (item of imagesArray; track $index) {
+            <div
+              class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col"
+            >
+              <div
+                class="flex-1 flex items-center justify-center bg-gray-50 p-4"
+              >
+                <img
+                  [src]="item"
+                  alt="Uploaded Image"
+                  class="max-w-full max-h-48 w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  style="contain-intrinsic-size: 100% 192px"
+                />
+              </div>
+              <button
+                type="button"
+                (click)="removeImageFromArray($index)"
+                class="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full shadow-md hover:bg-red-500 hover:text-white transition-colors duration-200 group-hover:opacity-100 opacity-0 z-10"
+                aria-label="Remove image"
+                title="Remove image"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"
+              >
+                <span class="text-white text-sm truncate w-full">
+                  Image {{ $index + 1 }}
+                </span>
+              </div>
+            </div>
+            }
+          </div>
+          }
+          <!-- Submit Button -->
+          <!-- Card Footer -->
+          <div class="flex items-center justify-center space-y-4 sm:space-y-0">
+            <button
+              type="submit"
+              (click)="generateTicket()"
+              class="w-full inline-flex items-center justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
+              [disabled]="!customerSupportForm.valid"
+              [class.opacity-70]="!customerSupportForm.valid"
+              [class.cursor-not-allowed]="!customerSupportForm.valid"
+            >
+              <i class="fas fa-paper-plane mr-2"></i>
+              Submit Ticket
+            </button>
+          </div>
+        </form>
+      </div>
+      }
+
+      <!-- Previous Tickets -->
+      @if (ticketsArray.length > 0) {
+      <div class="px-4 sm:px-6 lg:px-8">
+        <h2 class="heading_2 text-cyan-500 text-center mb-10 relative pb-2">
+          Previous Support Tickets
+        </h2>
+
+        <div class="space-y-6">
+          @for (ticket of ticketsArray; track $index) {
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden border border-cyan-50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            role="article"
+          >
+            <!-- Ticket Header -->
+            <div
+              class="bg-gradient-to-r from-cyan-50 to-cyan-100 px-6 py-4 border-b border-cyan-100"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"
+              >
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-lg font-semibold text-cyan-800 truncate">
+                    {{ ticket.subject }}
+                  </h3>
+                  <p class="text-sm text-cyan-600 mt-1">
+                    <span class="inline-flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 mr-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {{ ticket.created_at | relativedate }}
+                    </span>
+                  </p>
+                </div>
+
+                <!-- Status Badge -->
+                @if (ticket.status.closed) {
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200"
+                >
+                  <span class="w-2 h-2 rounded-full bg-green-500 mr-1.5"></span>
+                  Resolved
+                </span>
+                } @else if (ticket.status.assigned) {
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200"
+                >
+                  <span class="w-2 h-2 rounded-full bg-blue-500 mr-1.5"></span>
+                  Assigned
+                </span>
+                } @else if (ticket.status.inProgress) {
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800 border border-amber-200"
+                >
+                  <span class="w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span>
+                  In Progress
+                </span>
+                } @else {
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 border border-gray-200"
+                >
+                  <span class="w-2 h-2 rounded-full bg-gray-500 mr-1.5"></span>
+                  Open
+                </span>
+                }
+              </div>
+            </div>
+
+            <!-- Ticket Content -->
+            <div class="p-6">
+              <div class="prose prose-cyan max-w-none text-gray-600">
+                <p>{{ ticket.description }}</p>
+              </div>
+
+              @if (ticket.comments.length > 0) {
+              <div class="mt-6 pt-5 border-t border-cyan-50">
+                <h4
+                  class="flex items-center text-sm font-medium text-cyan-800 mb-3"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 mr-2 text-cyan-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
+                  Comments
+                </h4>
+                <div class="space-y-3">
+                  @for (comment of ticket.comments; track $index) {
+                  <div class="bg-cyan-50 rounded-lg p-4 border border-cyan-100">
+                    <p class="text-sm text-gray-700">{{ comment }}</p>
+                    <div class="mt-2 flex items-center text-xs text-cyan-600">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3.5 w-3.5 mr-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      {{ ticket.created_at | relativedate }}
+                    </div>
+                  </div>
+                  }
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+          }
+
+          <!-- Show More Button -->
+          @if (ticketsArray.length < totalTickets) {
+          <div class="flex justify-center mt-8">
+            <button
+              (click)="showmore()"
+              class="group relative inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white font-medium rounded-full shadow-md hover:shadow-lg hover:from-cyan-600 hover:to-cyan-700 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
+              type="button"
+            >
+              <span>Show More Tickets</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </button>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+} @defer() {
+<app-footer-section></app-footer-section>
+}

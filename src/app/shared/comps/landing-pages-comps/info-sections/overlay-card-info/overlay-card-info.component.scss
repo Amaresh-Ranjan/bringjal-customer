@@ -1,0 +1,30 @@
+.bg-image {
+    display: block; /* Ensures there are no additional spaces inside the container */
+    width: 100%; /* Make the image fully responsive */
+    position: relative;
+    display: inline-block; /* Wrap the container around the image */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the full width of the image */
+    height: 100%; /* Cover the full height of the image */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; /* Center horizontally */
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; /* Center vertically */
+  }
+  
+  .overlay-text {
+    color: white; /* Text color for better visibility */
+    text-align: center;
+    font-size: x-large;
+  }

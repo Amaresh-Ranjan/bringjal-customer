@@ -1,0 +1,63 @@
+<app-background-effect></app-background-effect>
+<app-header-section></app-header-section>
+<app-main-hero-type-writer-section></app-main-hero-type-writer-section>
+<div class="max-w-screen mx-auto" #heroSection>
+  <div class="w-full">
+    <!-- Checkbox section Start-->
+    <div class="w-full">
+      <app-check-box-section></app-check-box-section>
+    </div>
+    <!-- Checkbox section End-->
+    <!--Main Price section Start-->
+    <div>
+      <app-slant-price-section></app-slant-price-section>
+    </div>
+    <!--Main Price section End-->
+    <!--Customer Reviews section Start-->
+    <div class="w-full bg-white" #reviewsPart>
+      <!-- <app-user-reviews-first-section></app-user-reviews-first-section> -->
+      <app-user-reviews-section></app-user-reviews-section>
+    </div>
+    <!--Customer Reviews section End-->
+    <div class="w-full bg-white">
+      <div class="w-full">
+        <!-- 1st Card (Dark) Lab reports-->
+        @defer (on viewport(heroSection)) {
+        <app-lab-reports-animation-section></app-lab-reports-animation-section>
+        }
+        <!-- 2nd Card (Light) DropPy-->
+        @defer (on viewport(heroSection)) {
+        <app-device-animation-info-section></app-device-animation-info-section>
+        }
+        <!-- 3rd Card (Dark) Delivery & Service-->
+        @defer (on viewport(heroSection)) {
+        <app-hassle-free-watercan-delivery-animation-info-section></app-hassle-free-watercan-delivery-animation-info-section>
+        }
+        <!-- 4th Card (Light) Water Purification-->
+        @defer (on viewport(heroSection)) {
+        <app-water-purification-animation-info-section></app-water-purification-animation-info-section>
+        }
+        <!-- 5th Card (Dark) Watercans-->
+        @defer (on viewport(heroSection)) {
+        <app-container-animation-info-section></app-container-animation-info-section>
+        }
+        <!-- 6th Card (Light) Payments-->
+        @defer (on viewport(heroSection)) {
+        <app-payment-animation-info-section></app-payment-animation-info-section>
+        }
+      </div>
+    </div>
+    <!--Bringjal Process Start-->
+    <div class="col-12 bg-white">
+      <app-process-info-section></app-process-info-section>
+    </div>
+    <!--Bringjal Process End-->
+  </div>
+</div>
+<app-floating-can-section></app-floating-can-section>
+@defer (on viewport(reviewsPart)) {
+<app-overlay-card-info-section></app-overlay-card-info-section>
+<app-footer-section></app-footer-section>
+}
+<!-- Login Signup Modal Section -->
+<app-login-signup-modal-section></app-login-signup-modal-section>

@@ -1,0 +1,22 @@
+.content {
+  position: absolute;
+  padding-left: 70px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  top: 0px;
+  left: 0px;
+  &.sidebarExpanded {
+    z-index: 999;
+    opacity: 20%;
+    pointer-events: none;
+  }
+  width: 100%;
+}
+.sider-bar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  z-index: 9999999999;
+}

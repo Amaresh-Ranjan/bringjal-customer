@@ -1,0 +1,346 @@
+* {
+  box-sizing: border-box;
+}
+
+.buttonPdf {
+  background-color: #5c6ac4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  // height: auto;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+
+}
+
+/* invoice.component.css */
+.text-main {
+  color: #5c6ac4;
+}
+
+.heading {
+  color: #5c6ac4;
+  font-size: 40px !important;
+  padding: 0px 0px 0px 20px;
+}
+
+.bg-main {
+  background-color: #5c6ac4;
+}
+
+.text-muted-custom {
+  color: #5c6ac4;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+// invoice Original
+/* General card styling */
+.card {
+  overflow: hidden;
+  border-radius: 10px !important;
+  border: 1px solid #dee2e6 !important;
+  /* Ensures content does not overflow */
+  background-color: #fdebd3cb;
+}
+
+.card-header,
+.card-body {
+  /* Border between header and body */
+  padding: 1.5rem;
+  /* Increased padding */
+}
+
+.card-body {
+  /* Border on top of card body */
+  border-radius: 0;
+  /* Removes border-radius from card body to connect with header */
+}
+
+/* Background and text colors */
+.bg-main {
+  background-color: #007bff;
+  /* Blue background for headers */
+  color: #fff;
+  /* White text color */
+}
+
+.text-main {
+  color: #007bff;
+  /* Blue text color for totals */
+}
+
+/* Table styling */
+.table th,
+.table td {
+  padding: 0.75rem;
+  /* Increased padding for table cells */
+  vertical-align: middle;
+  /* Center align text vertically */
+}
+
+.table thead th {
+  background-color: #f8f9fa;
+  /* Light gray background for table header */
+  color: #495057;
+  /* Dark gray text color for headers */
+}
+
+.table tbody tr {
+  margin-bottom: 10px;
+  /* Space between rows */
+  border-radius: 10px;
+  /* Space between rows for better readability */
+}
+
+/* Invoice specific table styling */
+.invoice-table th,
+.invoice-table td {
+  vertical-align: middle;
+  /* Center align text vertically */
+}
+
+.invoice-col-md-2 {
+  width: 16.6667%;
+  /* 2/12 columns of width */
+}
+
+/* Invoice summary table styling */
+.invoice-summary td {
+  padding: 0.5rem;
+  /* Less padding for summary table */
+}
+
+/* Detail rows for card sections */
+.detail-row {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.detail-row .detail-heading {
+  flex: 0 0 30%;
+  font-weight: bold;
+}
+
+.detail-row .detail-value {
+  flex: 1;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  /* Gray color for muted text */
+}
+
+footer .text-main {
+  color: #007bff;
+  /* Blue text color for contact information */
+}
+
+/* Custom text colors */
+.text-muted-custom {
+  color: #6c757d;
+  /* Gray color for muted text */
+}
+
+/* Custom logo styling */
+.logo {
+  height: 100px;
+  width: 100px;
+  /* Adjust as needed */
+}
+
+//
+@media (max-width: 768px) {
+
+  .card-header,
+  .card-body {
+    padding: 0.8rem;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .text-main {
+    font-size: 16px;
+  }
+
+  .buttonPdf {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+  }
+
+  .detail-row .detail-heading {
+    flex: none;
+    margin-bottom: 0.25rem;
+  }
+
+  .detail-row .detail-value {
+    flex: none;
+  }
+
+  footer {
+    padding: 1rem;
+    font-size: 14px;
+  }
+}
+
+//
+@media (min-width: 769px) {
+
+  .card-header,
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .text-main {
+    font-size: 18px;
+  }
+
+  .buttonPdf {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .table {
+    font-size: 16px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+  }
+
+  .detail-row {
+    flex-direction: row;
+  }
+
+  .detail-row .detail-heading {
+    flex: 0 0 30%;
+  }
+
+  .detail-row .detail-value {
+    flex: 1;
+  }
+
+  footer {
+    padding: 2rem;
+    font-size: 16px;
+  }
+}
+
+//
+.words {
+  text-transform: capitalize;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  word-spacing: 1px;
+  color: #007bff;
+}
+
+/* CSS file or style block */
+.detail-value {
+  display: flex;
+  /* Flexbox for better alignment */
+  // justify-content: center;
+  /* Center the image horizontally */
+  align-items: center;
+  /* Center the image vertically */
+  height: 100%;
+  /* Ensure it takes full height of its container */
+  background: transparent;
+  /* Ensure the background is transparent */
+}
+
+.signature-img {
+  width: 100%;
+  /* Scale image to fit container width */
+  height: auto;
+  /* Maintain aspect ratio */
+  max-height: 100px;
+  /* Limit maximum height */
+  max-width: 400px;
+  /* Limit maximum width */
+  object-fit: contain;
+  /* Maintain aspect ratio while fitting within container */
+  border: none;
+  /* Remove any default border */
+}
+
+// A4 page size
+// .a4-size {
+//   width: 595px;
+//   height: 842px;
+//   margin: 0 auto;
+// }
+/* invoice.component.css */
+.a4-page {
+  width: 595px;
+  /* A4 width at 72 DPI */
+  height: 842px;
+  /* A4 height at 72 DPI */
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media print {
+  .a4-page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .a4-page {
+    width: 100%;
+    /* Scale down for mobile */
+    height: auto;
+    /* Adjust height automatically */
+    padding: 10px;
+    /* Optional: Adjust padding for mobile */
+  }
+}

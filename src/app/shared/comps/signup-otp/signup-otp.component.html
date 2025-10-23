@@ -1,0 +1,38 @@
+<div class="container">
+        <div class="row d-flex justify-content-end align-items-center">
+            <div class="col-12 ">
+                @if (errSignupOtp) {
+                    <div class="alert alert-danger" role="alert">{{errSignupOtp}}</div>
+                }
+            </div>
+
+            <div class="col-12 pt-4 text-center">
+                    <div>
+                        <p class="a-o-i">Enter verification code</p>
+                       @if (showOtpComponent) {
+
+                           <ng-otp-input class="text-md border-none" formControlName="otp" #ngOtpInput (onInputChange)="onOtpChange($event)" 
+                               [config]="config" ></ng-otp-input>
+                       }
+                      </div>    
+               
+            </div>
+            @if (!retry) {
+
+                <div class="col-12 text-center pt-2" >
+                    Retry again in {{timeLeft}} seconds
+                </div>
+            }
+            @else {
+                <div class="col-12 text-center pt-2">
+                    Did not recieve OTP?&nbsp;<u class="green-text"><button class="btn btn-sm btn-link" [disabled]="dBtnretry" (click)="otpRetry() ">Click
+                            here</button></u>&nbsp;to
+                    get OTP
+                </div>
+            }
+            
+            <div class="col-12 pt-4 d-grid gap-2">
+                <button class="btn btn-success" (click)="onSOtpSubmit()">Submit</button>
+            </div>
+        </div>
+</div>

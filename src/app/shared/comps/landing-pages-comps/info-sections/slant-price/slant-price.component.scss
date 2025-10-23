@@ -1,0 +1,156 @@
+.slanted {
+    position: relative;
+    height: 50vh;
+    background: #02131b;
+    float: left;
+    float: left;
+  }
+  .slanted.slanted-left {
+    width: 100%;
+  }
+
+  .heading {
+  display: none;
+}
+
+.cta-big {
+    width: 100%;
+    padding: 16px;
+    border-radius: 7px;
+    background-image: -o-linear-gradient(
+      28deg,
+      #f79533,
+      #f37055 16%,
+      #ef4e7b 32%,
+      #a166ab 48%,
+      #5073b8 64%,
+      #1098ad 80%,
+      #07b39b
+    );
+    background-image: linear-gradient(
+      62deg,
+      #f79533,
+      #f37055 16%,
+      #ef4e7b 32%,
+      #a166ab 48%,
+      #5073b8 64%,
+      #1098ad 80%,
+      #07b39b
+    );
+    -webkit-box-shadow: 0 12px 60px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 60px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    -o-transition: transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    content: "";
+    cursor: pointer;
+  }
+
+  .cta-big:hover {
+    -webkit-transform: scale(0.94);
+    -ms-transform: scale(0.94);
+    transform: scale(0.94);
+  }
+
+  .cta-big {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .w-inline-block {
+    max-width: 100%;
+    display: inline-block;
+  }
+  
+  .slanted:after,
+  .slanted:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+  }
+  .slanted-left.slant-to-right:after {
+    left: 0;
+    border-left: 100px solid #fbfbfb;
+    border-top: 50vh solid #02131b;
+  }
+  #greenbg {
+    background-color: #02131b;
+  }
+
+  .price-section {
+    #displayText {
+      padding-left: 150px;
+    }
+  }
+
+  .hero-heading {
+    display: inline-block;
+    margin-bottom: 24px;
+    background-image: -o-linear-gradient(348deg, #00bf72, #00caa8 50%, #00d5e2);
+    background-image: linear-gradient(102deg, #00bf72, #00caa8 50%, #00d5e2);
+    font-family: Montserrat, sans-serif;
+    font-size: 36px;
+    line-height: 1em;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media screen and (max-width: 767px) {
+    .hero-heading {
+      font-size: 24px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .hero-heading {
+      display: none;
+      background-image: -o-linear-gradient(348deg, #00bf72, #00caa8 50%, #00d5e2);
+      background-image: linear-gradient(102deg, #00bf72, #00caa8 50%, #00d5e2);
+    }
+
+    .heading {
+        display: block;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#00bf72), to(#00d5e2));
+        background-image: -o-linear-gradient(top, #00bf72, #00d5e2);
+        background-image: linear-gradient(180deg, #00bf72, #00d5e2);
+        font-family: Montserrat, sans-serif;
+        font-size: 24px;
+        line-height: 1.2em;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    
+
+    .price-section {
+        .heading {
+          display: block;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#00bf72), to(#00d5e2));
+          background-image: -o-linear-gradient(top, #00bf72, #00d5e2);
+          background-image: linear-gradient(180deg, #00bf72, #00d5e2);
+          font-family: Montserrat, sans-serif;
+          font-size: 24px;
+          line-height: 1.2em;
+          text-align: center;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+}

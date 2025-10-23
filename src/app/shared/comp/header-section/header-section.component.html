@@ -1,0 +1,23 @@
+<nav
+  class="fixed w-full top-0 left-0 right-0 z-50 flex flex-wrap items-center justify-between p-2 bg-gradient-to-r from-cyan-900/40 via-slate-900/20 to-purple-900/50 backdrop-blur-md drop-shadow-2xl transition-all duration-200"
+>
+  <div class="mx-1">
+    <a
+      class="flex items-center"
+      rel="external"
+      [routerLink]="['/']"
+      target="_self"
+    >
+      <img
+        src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto/v1554770818/website/bringjal_logo.png"
+        height="50px"
+        alt="logo"
+        loading="lazy"
+        class="mr-2 cursor-pointer"
+      />
+    </a>
+  </div>
+  <div class="mx-1">
+    <app-login-and-signup></app-login-and-signup>
+  </div>
+</nav>

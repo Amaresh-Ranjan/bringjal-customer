@@ -1,0 +1,85 @@
+<div class="bg-secondary-color">
+  <!-- Top Animation for Small Screens -->
+  <div class="block lg:hidden w-full p-4">
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <div class="w-32 animation-container">
+        <ng-lottie [options]="wifiOptions"></ng-lottie>
+      </div>
+      <div class="w-48">
+        <img
+          src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto:low/v1554737316/website/bringjal_droppy_to_order_water_can.png"
+          alt="Bringjal presents droppy to order water can"
+          class="w-full h-auto object-contain mx-auto"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Layout -->
+  <div class="flex flex-col lg:flex-row justify-center items-center">
+    <!-- Content Section -->
+    <div class="w-full lg:w-2/3">
+      <div class="playing quality-section md:border-1 md:border-cyan-500 md:rounded-3xl">
+        <div class="w-full">
+          <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Header -->
+            <div class="w-full mb-6 lg:mb-8">
+              <h1 class="text-dark text-center text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-3">
+                {{ deviceData.title }}
+              </h1>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="flex flex-wrap justify-center gap-4 font-semibold">
+              <div
+                *ngFor="let feature of deviceData.features"
+                class="quality-check-item p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out w-full lg:w-[calc(50%-1rem)]"
+              >
+                <!-- Feature Header -->
+                <div class="check-header text-center mb-4">
+                  <i [ngClass]="feature.icon + ' ' + feature.color" class="text-xl sm:text-2xl"></i>
+                  <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mt-2">
+                    {{ feature.title }}
+                  </h3>
+                </div>
+                <!-- Feature Description -->
+                <p class="description text-gray-600 text-sm sm:text-base mt-3">
+                  {{ feature.description }}
+                </p>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <a class="text-sm cursor-pointer float-right my-3 underline text-cyan-600 hover:text-cyan-800">
+              {{ deviceData.cta.text }}
+              <i class="bi bi-arrow-right ml-2"></i>
+            </a>
+          </div>
+
+          <!-- Wave Animation -->
+          <div class="wave"></div>
+          <div class="wave"></div>
+          <div class="wave"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Animation for Medium Screens and Up -->
+    <div class="hidden lg:block md:w-1/3 p-4 lg:p-6">
+      <div class="flex flex-col items-center justify-center space-y-6">
+        <div class="w-40 md:w-48 animation-container">
+          <ng-lottie [options]="wifiOptions"></ng-lottie>
+        </div>
+        <div class="w-full max-w-sm">
+          <img
+            src="https://res.cloudinary.com/dug99qncm/image/upload/dpr_auto,f_auto,q_auto:low/v1554737316/website/bringjal_droppy_to_order_water_can.png"
+            alt="Bringjal presents droppy to order water can"
+            class="w-full h-auto object-contain mx-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

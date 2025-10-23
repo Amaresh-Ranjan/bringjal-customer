@@ -1,0 +1,60 @@
+.checkOut{
+    background-color: #02131b;
+    backdrop-filter: blur(10px);
+    inset: 0;
+    color: white;
+    border-radius: 0 0 16px 16px;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.btn-circle.btn-sm { 
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 2vh;
+    //right: 20px;
+    width: 50px; 
+    height: 50px; 
+    padding: 0px 0px; 
+    border-radius: 50px; 
+    font-size: 28px; 
+    text-align: center; 
+} 
+
+.sticky-top{
+    position: sticky;
+    top:0px;
+}
+
+.btn-link{
+    color: white;
+}
+
+.hide{
+    position: relative;
+    display:none;
+}
+
+.etaBg{
+    background-color: #02131b;
+    color: white;
+}
+
+.input-group.lg-form.form-lg.form-2 input.amber-border  {
+    border: 1px solid #e0e0e0  ;
+}
+.input-group-append{
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+.form-control{
+    z-index: 10;
+}
+
+.bg-dark{
+    min-height: 100vh;
+}

@@ -1,0 +1,12 @@
+<app-side-bar
+  class="sider-bar"
+  [isExpanded]="sidebarExpanded"
+  (toggleSidebar)="onToggleSidebar(!sidebarExpanded)"
+></app-side-bar>
+<div class="max-w-screen" (click)="onClick($event)">
+  <div class="w-full">
+    <div class="content" [ngClass]="{ sidebarExpanded: sidebarExpanded }">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,481 @@
+/* Offcanvas Custom Styles */
+.offcanvas {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+}
+
+.offcanvas-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.offcanvas-title {
+  font-weight: bold;
+}
+
+.offcanvas-body {
+  padding: 0.5rem;
+}
+
+/* Animation for smooth entry */
+.offcanvas.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.offcanvas.hide {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Base button style */
+.button {
+  width: 25%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+}
+
+/* Accept button styles */
+.accept-button {
+  background-color: #28a745;
+}
+
+.accept-button:hover {
+  background-color: #218838;
+}
+
+/* Reject button styles */
+.reject-button {
+  background-color: #dc3545;
+}
+
+.reject-button:hover {
+  background-color: #c82333;
+}
+
+/* Optional: Add spacing between buttons */
+.text-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+//
+.couponCode {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+
+  input {
+    width: 90%;
+  }
+
+  button {
+    width: 25%;
+  }
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 0px 20px;
+}
+
+.card-body {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.card {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+  .text-end {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 10px;
+    display: inline;
+    text-align: center;
+  }
+
+  .offcanvas-body {
+    padding: 0.5rem;
+  }
+
+  .offcanvas-header {
+    padding: 0.5rem;
+  }
+
+  .card {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .couponCode {
+    flex-direction: column;
+  }
+
+  .couponCode button {
+    width: 100%;
+  }
+
+  .couponCode input {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+//
+/* Basic styling for the component wrapper */
+.product--quantity-wrap {
+  background: #f8f9fc;
+  /* Light gray background */
+  padding: 15px;
+  /* Padding around the content */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* Light shadow for depth */
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+}
+
+/* Flex container styling */
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the quantity text */
+.quantity-text {
+  margin-right: 10px;
+  /* Space between the text and quantity controls */
+  color: #2f3237;
+  /* Dark gray text */
+}
+
+/* Styling for the quantity control wrapper */
+.quantity-wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for buttons */
+.actionBtn {
+  background: #f1f3f9;
+  /* Light gray background for buttons */
+  border: 1px solid #dee3ed;
+  /* Border color matching the background */
+  border-radius: 4px;
+  /* Rounded corners */
+  width: 40px;
+  /* Button width */
+  height: 40px;
+  /* Button height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  margin: 0 5px;
+  /* Space around buttons */
+}
+
+/* Icon color and size */
+.actionBtn i {
+  color: #1d1e20;
+  /* Dark text color for icons */
+  font-size: 18px;
+  /* Icon size */
+}
+
+/* Styling for the quantity input field */
+.input-wrap {
+  width: 60px;
+  /* Width of the input field */
+  text-align: center;
+  /* Center text inside the input */
+  border: 1px solid #dee3ed;
+  /* Border color matching the button */
+  padding: 5px;
+  /* Padding inside the input */
+  margin: 0 5px;
+  /* Space around the input */
+  font-size: 16px;
+  /* Font size inside the input */
+  border-radius: 4px;
+  /* Rounded corners */
+}
+
+//
+
+/* Container for the entire quantity selector component */
+.quantity-selector {
+  background-color: #f8f9fc;
+  /* Light gray background */
+  padding: 15px;
+  /* Padding around the component */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* Light shadow */
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+  margin: auto;
+}
+
+/* Inner content container */
+.quantity-selector__content {
+  display: flex;
+  align-items: center;
+}
+
+/* Label text for the quantity selector */
+.quantity-selector__label {
+  margin-right: 10px;
+  /* Space between the label and controls */
+  color: #2f3237;
+  /* Dark gray text color */
+}
+
+/* Container for quantity controls (buttons and input) */
+.quantity-selector__controls {
+  display: flex;
+  align-items: center;
+  background-color: #eaf9f5;
+  padding: 10px;
+  color: rgba(51, 51, 51, 0.5);
+  margin-right: 30px;
+}
+
+/* Common styling for buttons */
+.quantity-selector__button {
+  background-color: #f1f3f900;
+  border: none;
+  width: 40px;
+  /* Width of the button */
+  height: 40px;
+  /* Height of the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  margin: 0 5px;
+  /* Space around the buttons */
+}
+
+/* Specific styles for minus button */
+.quantity-selector__button--minus {
+  /* Additional styles for minus button if needed */
+}
+
+/* Specific styles for plus button */
+.quantity-selector__button--plus {
+  /* Additional styles for plus button if needed */
+}
+
+/* Icon styling */
+.icon {
+  color: #1d1e20;
+  /* Dark color for icons */
+  font-size: 18px;
+  /* Icon size */
+}
+
+/* Input field styling */
+.quantity-selector__input {
+  width: 60px;
+  /* Width of the input field */
+  text-align: center;
+  /* Center text in input */
+  border: 1px solid #dee3ed;
+  /* Border color */
+  padding: 5px;
+  /* Padding inside the input */
+  margin: 0 5px;
+  /* Space around the input */
+  font-size: 16px;
+  /* Font size inside the input */
+  border-radius: 4px;
+  /* Rounded corners */
+}
+
+.containerSelect {
+  padding-top: 20px;
+  max-width: 968px;
+  margin: auto;
+  background-color: rgba(127, 255, 212, 0) !important;
+  height: max-content;
+}
+
+/* General panel styling */
+.subscription-panel {
+  background-color: #f8f9fc;
+  /* Light gray background */
+  border: 1px solid #e1e4e8;
+  /* Light gray border */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.16),
+    0 1px 4px -1px rgba(0, 0, 0, 0.04);
+  /* Light shadow */
+  padding: 20px;
+  /* Padding inside the panel */
+  margin: 20px 0;
+  /* Margin above and below the panel */
+}
+
+/* Wrapper for all subscription options */
+.subscription--choose-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Content wrapper for individual sections */
+.content-wrap {
+  margin-bottom: 20px;
+  /* Space between sections */
+}
+
+/* Title text styling */
+.title-text {
+  color: #2f3237;
+  /* Dark gray text color */
+  margin-bottom: 10px;
+  /* Space below the title */
+  font-size: 1.25rem;
+  /* Font size for the title */
+}
+
+/* Grouping of checkboxes */
+.checkbox--group-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  /* Wrap checkboxes to next line if necessary */
+}
+
+/* Styling for each checkbox item */
+.custom--checkbox-tag {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  /* Space between checkboxes */
+  margin-bottom: 5px;
+  /* Space below each checkbox */
+}
+
+/* Space between checkbox input and its label */
+.custom--checkbox-tag input {
+  margin-right: 5px;
+  /* Space between checkbox and label */
+}
+
+/* Styling for the select dropdown container */
+.payment--frequency-select {
+  display: flex;
+  align-items: center;
+  /* Align items vertically */
+}
+
+/* Container for the custom select element */
+.custom--select-wrap {
+  position: relative;
+  width: 200px;
+  /* Fixed width for select element */
+}
+
+/* Styling for the select dropdown */
+.payment--frequency-dropdown {
+  width: 100%;
+  /* Full width of the container */
+  padding: 10px;
+  /* Padding inside the select box */
+  border: 1px solid #dee3ed;
+  /* Light gray border */
+  border-radius: 4px;
+  /* Rounded corners */
+  background-color: #fff;
+  /* White background */
+  appearance: none;
+  /* Remove default browser styling */
+}
+
+/* Styling for the select label */
+.select-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #5e636e;
+  /* Medium gray color for the label */
+  pointer-events: none;
+  /* Make label non-interactive */
+  transition: 0.2s;
+  /* Smooth transition for label movement */
+  font-size: 0.875rem;
+  /* Font size for the label */
+}
+
+/* Move the label when the select box is focused or has a value */
+.payment--frequency-dropdown:focus+.select-label,
+.payment--frequency-dropdown:not(:placeholder-shown)+.select-label {
+  top: -10px;
+  /* Move label above the select box */
+  left: 0;
+  font-size: 0.75rem;
+  /* Smaller font size for the label */
+  color: #2f3237;
+  /* Darker gray color when focused or not empty */
+}
+
+/* Style for the hidden class, if needed */
+.hide {
+  display: none;
+  /* Hide elements */
+}

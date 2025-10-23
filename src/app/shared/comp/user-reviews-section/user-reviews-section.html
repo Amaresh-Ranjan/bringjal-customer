@@ -1,0 +1,40 @@
+<div class="relative w-full overflow-hidden bg-gray-50 p-8 rounded-lg shadow-lg">
+    <p
+        class="text-2xl md:text-4xl leading-tight font-bold text-center bg-gradient-to-r from-cyan-800 via-cyan-600 to-cyan-700 bg-clip-text text-transparent pb-4">
+        What Our Users Say
+    </p>
+    <!-- Scrollable Container -->
+    <div #scrollContainer class="flex space-x-6 overflow-x-auto scroll-smooth scrollbar-hide"
+        style="scroll-behavior: smooth;">
+        <!-- Testimonial Cards -->
+        <div *ngFor="let t of testimonials; let i = index"
+            class="min-w-[280px] max-w-[280px] flex-shrink-0 bg-white border border-cyan-200 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+            <img [src]="t.image" alt="{{ t.name }}"
+                class="w-20 h-20 rounded-full object-cover border-4 border-cyan-300 mx-auto mb-4" />
+            <div class="relative">
+                <p class="text-gray-700 text-sm mb-2" [class.line-clamp-5]="!isExpanded(i)">
+                    "{{ t.text }}"
+                </p>
+                <button 
+                    *ngIf="t.text.length > 100"
+                    (click)="toggleExpand(i); $event.stopPropagation()"
+                    class="text-cyan-600 hover:text-cyan-800 text-xs font-medium transition-colors duration-200 focus:outline-none"
+                >
+                    {{ isExpanded(i) ? 'Show Less' : 'Read More' }}
+                </button>
+            </div>
+            <p class="text-cyan-800 font-semibold text-center">{{ t.name }}</p>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button (click)="scrollLeft()"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-cyan-600 text-white p-2 rounded-full shadow hover:bg-cyan-700 transition">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <button (click)="scrollRight()"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-cyan-600 text-white p-2 rounded-full shadow hover:bg-cyan-700 transition">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+</div>

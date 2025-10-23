@@ -1,0 +1,66 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="flex flex-col items-center">
+    <!-- Header Section -->
+    <div class="w-full text-center mb-2">
+      <h2 class="text-3xl md:text-4xl font-bold text-cyan-800 mb-2">
+        Accessory Selection
+      </h2>
+      <p class="text-cyan-600 text-lg md:text-xl max-w-2xl mx-auto">
+        Please select the accessory you want to order along with your delivery.
+      </p>
+    </div>
+
+    <!-- Skip Button -->
+    <div class="w-full max-w-md mb-2">
+      <button type="button" (click)="skipAddingAccessory()"
+        class="w-full bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2">
+        <span>Skip Without Adding Accessories</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+    <!-- Accessory Card -->
+    <div class="w-full max-w-4xl">
+      <div class="p-4">
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden border border-cyan-100 hover:shadow-2xl transition-shadow duration-300">
+          <!-- Product Image -->
+          <div class="relative h-64 bg-cyan-50 flex items-center justify-center p-4">
+            <img [src]="accessories[0].item_details.images[0]" [alt]="accessories[0].item_name"
+              class="max-h-full max-w-full object-contain transition-transform duration-500 hover:scale-105" />
+          </div>
+
+          <!-- Product Info -->
+          <div class="p-6">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+              <h3 class="text-2xl font-bold text-cyan-900">{{ accessories[0].item_name }}</h3>
+              <span class="text-2xl font-bold text-cyan-600">₹{{ accessoryTotalAmount }}/-</span>
+            </div>
+
+            <!-- Quantity Controls -->
+            <div class="flex flex-col md:flex-row items-center justify-between mt-6 gap-2">
+              <div class="flex items-center space-x-2">
+                <button (click)="subQty()" type="button"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition-colors"
+                  aria-label="Decrease quantity">
+                  <i class="bi bi-dash-lg text-xl"></i>
+                </button>
+                <span class="text-xl font-semibold w-8 text-center">{{ productQty }}</span>
+                <button (click)="addQty()" type="button"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition-colors"
+                  aria-label="Increase quantity">
+                  <i class="bi bi-plus-lg text-xl"></i>
+                </button>
+              </div>
+
+              <button (click)="addAccessoryToCart(accessories[0])" type="button"
+                class="flex-1 max-w-xs ml-4 bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                <i class="bi bi-cart-plus"></i>
+                <span>Add to Cart ({{ productQty }})</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

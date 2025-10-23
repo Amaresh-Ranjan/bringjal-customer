@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-title">Signup OTP</h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-describedby="modal-title"
+        (click)="modal.dismiss('Cross click')"
+    ></button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="col-12">
+            <app-signup-otp [mobile]="mobile" [userid]="userid" (operationSuccess)="operationSuccessSignupOtp($event)"></app-signup-otp>
+        </div>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="text-muted">
+        Not Registered yet? <a (click)="showLogin()" class="btn btn-light btn-sm">Signup</a>
+    </div>
+</div> 

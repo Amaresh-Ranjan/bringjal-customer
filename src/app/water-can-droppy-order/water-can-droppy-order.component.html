@@ -1,0 +1,223 @@
+<!-- Header -->
+<!-- <app-header-offer-section-one></app-header-offer-section-one>
+<app-header-offer-section-two></app-header-offer-section-two> -->
+<app-header-offer-section-three></app-header-offer-section-three>
+<!-- Hero -->
+<app-hero-section-one [mainHeading]="mainHeading"></app-hero-section-one>
+<!-- <app-hero-section-two></app-hero-section-two> -->
+<!-- <app-hero-section-three></app-hero-section-three> -->
+<!-- Cards -->
+<!-- <app-card-section-one></app-card-section-one> -->
+<!-- Coupon Section -->
+<!-- Coupon -->
+<!-- @if(!couponSection){
+<div class="container-fluid couponCode">
+  <input type="text" placeholder="Enter coupon code" class="form-control" [(ngModel)]="couponCode" />
+  <button class="btn btn-success" [disabled]="!couponCode" (click)="openVerticallyCentered(contentCouponModel)">
+    Apply Coupon
+  </button>
+</div>
+}@else {
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body">
+        <div class="card">
+          <div>
+            <h2>{{ couponCode }}</h2>
+            <span class="text-success">Coupon Applied</span>
+            <p>Save Upto 100 On Your Next Order</p>
+          </div>
+          <div>
+            <button class="btn btn-danger" (click)="couponSection = false">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<ng-template #contentCouponModel let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Coupon Code</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>You Entered Coupon Code Is: {{ couponCode }}</p>
+    <br />
+    <p class="text-success text-center">Applied Coupon</p>
+  </div>
+</ng-template> -->
+<!--  -->
+@if(!couponSection) {
+<div class="container-fluid couponCode">
+  <input type="text" placeholder="Enter coupon code" class="form-control" [(ngModel)]="couponCode" />
+  <button class="btn btn-success" [disabled]="!couponCode" (click)="applyCoupon()">
+    Apply Coupon
+  </button>
+</div>
+} @else {
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body">
+        <div class="card">
+          <div>
+            <h2>{{ couponCode }}</h2>
+            <span class="text-success">Coupon Applied</span>
+            <p>Save Upto 100 On Your Next Order</p>
+          </div>
+          <div>
+            <button class="btn btn-danger" (click)="couponSection = false">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<ng-template #successModal let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Coupon Code</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>You Entered Coupon Code Is: {{ couponCode }}</p>
+    <br />
+    <p class="text-success text-center">Applied Coupon</p>
+  </div>
+</ng-template>
+
+<ng-template #errorModal let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Invalid Coupon Code</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>The coupon code you entered is invalid. Please try again.</p>
+    <br />
+    <p class="text-danger text-center">Invalid Coupon Code</p>
+  </div>
+</ng-template>
+
+<!--  -->
+<!-- GIF Container -->
+<!-- <div *ngIf="showGif" class="gif-container">
+  <img src="https://i.gifer.com/origin/18/1841ee5f002ce72ea3db1177531c04a4_w200.gif" class="gif" alt="Processing GIF">
+</div> -->
+<br />
+<!-- Select Quantity -->
+<div class="containerSelect py-2 px-3">
+  <div class="subscription-panel">
+    <h1 class="title-text mb-3 text-center">Select Quantity</h1>
+    <div class="quantity-selector mb-3">
+      <div class="quantity-selector__content">
+        <span class="quantity-selector__label">Select Quantity</span>
+        <div class="quantity-selector__controls">
+          <button class="quantity-selector__button quantity-selector__button--minus" (click)="decrement()">
+            <i class="bi bi-dash"></i>
+            </button>
+            <input type="number" class="quantity-selector__input" [value]="quantity" (input)="onInputChange($event)"
+              [attr.min]="minQuantity" [attr.max]="maxQuantity" />
+            <button class="quantity-selector__button quantity-selector__button--plus" (click)="increment()">
+            <i class="bi bi-plus"></i>
+            </button>
+            </div>
+            </div>
+            </div>
+          <div class="subscription--choose-wrapper">
+            <div class="content-wrap delivery-day">
+              <h4 class="title-text">Select the days of delivery</h4>
+              <div class="checkbox--group-wrap delivery--day-list">
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Mon" value="Mon" [checked]="selectedDays['Mon']"
+                    (change)="onDayChange('Mon', $event.target.checked)" />
+                  <label for="days-Mon">Mon</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Tue" value="Tue" [checked]="selectedDays['Tue']"
+                    (change)="onDayChange('Tue', $event.target.checked)" />
+                  <label for="days-Tue">Tue</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Wed" value="Wed" [checked]="selectedDays['Wed']"
+                    (change)="onDayChange('Wed', $event.target.checked)" />
+                  <label for="days-Wed">Wed</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Thu" value="Thu" [checked]="selectedDays['Thu']"
+                    (change)="onDayChange('Thu', $event.target.checked)" />
+                  <label for="days-Thu">Thu</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Fri" value="Fri" [checked]="selectedDays['Fri']"
+                    (change)="onDayChange('Fri', $event.target.checked)" />
+                  <label for="days-Fri">Fri</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Sat" value="Sat" [checked]="selectedDays['Sat']"
+                    (change)="onDayChange('Sat', $event.target.checked)" />
+                  <label for="days-Sat">Sat</label>
+                </div>
+                <div class="custom--checkbox-tag">
+                  <input type="checkbox" id="days-Sun" value="Sun" [checked]="selectedDays['Sun']"
+                    (change)="onDayChange('Sun', $event.target.checked)" />
+                  <label for="days-Sun">Sun</label>
+                </div>
+              </div>
+            </div>
+            <div class="content-wrap payment--frequency-wrapper">
+              <h4 class="title-text">Payment frequency</h4>
+              <div class="payment--frequency-select">
+                <div class="custom--select-wrap pure-material-textfield-outlined">
+                  <select class="select-text payment--frequency-dropdown" (change)="onFrequencyChange($event)" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">1 Month</option>
+                    <option value="3">3 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="12">12 Months</option>
+                  </select>
+                  <label class="select-label">Select</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center w-50 mx-auto">
+            <button class="submit-button btn btn-primary w-100" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          </div>
+</div>
+<!--  -->
+<app-card-section-two></app-card-section-two>
+<!-- <app-card-section-three></app-card-section-three> -->
+<!-- Footer -->
+<!-- <app-footer-section-one></app-footer-section-one> -->
+<app-footer-section-two></app-footer-section-two>
+<!-- <app-footer-section-three></app-footer-section-three> -->
+<!-- HTML Template -->
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">Bringjal Water Delivery</h4>
+    <!-- <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button> -->
+  </div>
+  <div class="offcanvas-body">
+    <p>Bringjal is an online water delivery service.</p>
+    <h4>Do you want to accept cookies?</h4>
+    <!-- Accept and Reject Buttons -->
+    <div class="text-end">
+      <button (click)="acceptCookies()" class="button accept-button">
+        Accept
+      </button>
+      <button (click)="rejectCookies()" class="button reject-button">
+        Reject
+      </button>
+    </div>
+  </div>
+</ng-template>

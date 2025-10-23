@@ -1,0 +1,62 @@
+<app-header></app-header>
+<app-floating-can></app-floating-can>
+<app-main-hero-section></app-main-hero-section>
+<div class="container-fluid" #heroSection>
+  <div class="row bg-light">
+    <!-- Checkbox section Start-->
+    <div class="col-12 bg-light">
+      <app-check-box></app-check-box>
+    </div>
+    <!-- Checkbox section End-->
+    <!--Main Price section Start-->
+    <div class="col-12 bg-white">
+      <app-slant-price></app-slant-price>
+    </div>
+
+    <!--Main Price section End-->
+    <!--Customer Reviews section Start-->
+    <div class="col-12 bg-light" #reviewsPart>
+      <app-user-reviews-first></app-user-reviews-first>
+    </div>
+    <!--Customer Reviews section End-->
+    <div class="col-12">
+      <div class="container-fluid">
+        <!-- 1st Card (Dark) Lab reports-->
+
+        @defer (on viewport(heroSection)) {
+        <app-lab-reports-animation-info></app-lab-reports-animation-info>
+        }
+        <!-- 2nd Card (Light) DropPy-->
+        @defer (on viewport(heroSection)) {
+        <app-device-animation-info></app-device-animation-info>
+        }
+        <!-- 3rd Card (Dark) Delivery & Service-->
+        @defer (on viewport(heroSection)) {
+        <app-hassle-free-watercan-delivery-animation-info></app-hassle-free-watercan-delivery-animation-info>
+        }
+        <!-- 4th Card (Light) Water Purification-->
+        @defer (on viewport(heroSection)) {
+        <app-water-purification-animation-info></app-water-purification-animation-info>
+        }
+        <!-- 5th Card (Dark) Watercans-->
+        @defer (on viewport(heroSection)){
+        <app-container-animation-info></app-container-animation-info>
+        }
+        <!-- 6th Card (Light) Payments-->
+        @defer (on viewport(heroSection)) {
+        <app-payment-animation-info></app-payment-animation-info>
+        }
+      </div>
+    </div>
+
+    <!--Bringjal Process Start-->
+    <div class="col-12 bg-white">
+      <app-process-info></app-process-info>
+    </div>
+    <!--Bringjal Process End-->
+  </div>
+</div>
+@defer (on viewport(reviewsPart)) {
+<app-overlay-card-info></app-overlay-card-info>
+<app-footer></app-footer>
+}

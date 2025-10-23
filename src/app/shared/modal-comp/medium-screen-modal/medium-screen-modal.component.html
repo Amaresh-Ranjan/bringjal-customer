@@ -1,0 +1,55 @@
+<div
+  *ngIf="isOpen"
+  [@modalAnimation]
+  class="fixed inset-0 z-50 overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <!-- Backdrop -->
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg filter backdrop-filter"
+    (click)="close()"
+  ></div>
+
+  <!-- Modal Container -->
+  <main class="flex min-h-screen items-center justify-center p-2">
+    <div
+      class="relative w-full max-w-screen-md transform overflow-hidden rounded-lg bg-white py-10 px-2 backdrop-blur shadow-xl transition-all"
+      role="document"
+    >
+      <!-- Header -->
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h3
+          class="md:text-4xl text-2xl font-medium text-gray-900 text-center"
+          id="modal-title"
+          [innerHTML]="title"
+        ></h3>
+        <button
+          (click)="close()"
+          class="absolute right-4 top-4 text-gray-900 hover:text-gray-700 focus:outline-none"
+          aria-label="Close modal"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <section class="px-1 py-1">
+        <ng-content></ng-content>
+      </section>
+    </div>
+  </main>
+</div>

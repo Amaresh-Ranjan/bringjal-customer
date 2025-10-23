@@ -1,0 +1,344 @@
+// Default Set Css
+// https://www.figma.com/design/lHPyo26xxgrpKwjIw26Teq/Flat-Color-Card-Variation-(Community)?node-id=2-98&t=98JdD9ivKTvPHKoi-0
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  list-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+:root {
+  --main-bg-color: #fffbf9;
+  --secondary-bg-color: #000;
+  --primary-text-color: #eee4e4;
+  --header-bg-color1: #03e991;
+  --header-bg-color2: #03d9d1;
+  // --footer-bg-color:#979d9d;
+  --footer-text-color: #979d9d;
+  --footer-cost-color: #07e10a;
+  // Screen Size
+  --max-width-lg: 980px;
+}
+
+// Box Shadows
+.boxshadow {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px,
+    rgba(0, 0, 0, 0.3) 0px 12px 24px -4px, rgba(0, 0, 0, 0.2) 0px -4px 8px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px,
+    rgba(0, 0, 0, 0.3) 0px 12px 24px -4px, rgba(0, 0, 0, 0.2) 0px -4px 8px inset;
+  border-radius: 18px;
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none !important;
+  outline: none !important;
+}
+
+.boxshadowPlace {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px,
+    rgba(0, 0, 0, 0.3) 0px 12px 24px -4px, rgba(0, 0, 0, 0.2) 0px -4px 8px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px,
+    rgba(0, 0, 0, 0.3) 0px 12px 24px -4px, rgba(0, 0, 0, 0.2) 0px -4px 8px inset;
+  border-radius: 18px;
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none !important;
+  outline: none !important;
+}
+
+.boxshadowPlace:hover {
+  -webkit-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  transform: scale(1.01);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 6px 12px,
+    rgba(0, 0, 0, 0.4) 0px 16px 32px -6px,
+    rgba(0, 0, 0, 0.3) 0px -6px 12px inset;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 6px 12px,
+    rgba(0, 0, 0, 0.4) 0px 16px 32px -6px,
+    rgba(0, 0, 0, 0.3) 0px -6px 12px inset;
+}
+
+.alrert_boxShadow {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  border-radius: 18px;
+}
+
+.card {
+  border: none !important;
+}
+
+.btn-outline-info {
+  color: #000000;
+  border-color: #0d6efd;
+}
+
+.btn-outline-info:hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.width-15 {
+  width: 15%;
+}
+
+.padding {
+  padding-left: 35px !important;
+}
+
+// header Main
+.header {
+  font-family: "Arial", sans-serif !important;
+  background: hsla(190, 60%, 85%, 1);
+
+  background: -o-linear-gradient(
+    left,
+    hsla(190, 60%, 85%, 1) 0%,
+    hsla(190, 50%, 65%, 1) 100%
+  );
+
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(hsla(190, 60%, 85%, 1)),
+    to(hsla(190, 50%, 65%, 1))
+  );
+
+  background: linear-gradient(
+    90deg,
+    hsla(190, 60%, 85%, 1) 0%,
+    hsla(190, 50%, 65%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(190, 60%, 85%, 1) 0%,
+    hsla(190, 50%, 65%, 1) 100%
+  );
+
+  -webkit-box-shadow: rgba(0, 150, 200, 0.3) 0px 3px 8px -1px,
+    rgba(0, 0, 0, 0.2) 0px 2px 5px -1px;
+
+  box-shadow: rgba(0, 150, 200, 0.3) 0px 3px 8px -1px,
+    rgba(0, 0, 0, 0.2) 0px 2px 5px -1px;
+
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.header h1,
+.header h2,
+.header h3 {
+  color: hsla(200, 40%, 20%, 1);
+  margin: 0;
+}
+
+.header h1:hover,
+.header h2:hover,
+.header h3:hover {
+  color: hsla(200, 50%, 15%, 1);
+}
+
+.bg-color {
+  background-image: url("../src/assets/icons/gift_logo.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.error-card {
+  background-image: url("../src/assets/icons/Red-error.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.refer-earn {
+  background-image: url("../src/assets/icons/Green-Card.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.card-white {
+  background-image: url("../src/assets/icons/White-Card.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+//Hero Section One
+:root {
+  // Main Desktop Device
+  --Main-Background-Color: #000000;
+  --primary-color: white;
+  --max-width-screen: 980px;
+  --primary-font-family: IBM Plex Sans, sans-serif;
+  // Main Heading
+  --primary-font-size-desktop: 34px;
+  --description-font-size-desktop: 22px;
+  --typewriter-font-size-desktop: 28px;
+  // Gradient Colors
+  --primary-gradient-color: #00aa67;
+  --secondary-gradient-color: #006a8a;
+  // cards
+  --primary-card-color: #000c0a;
+  --secondary-card-color: ##002411;
+  // Mobile Devices
+  --primary-font-size-mobile: 22px;
+  --description-font-size-mobile: 18px;
+  --typewriter-font-size-mobile: 20px;
+}
+// Hero Section Two
+:root {
+  --primary-text-color: #656565;
+  --secondary-bg-color: #000;
+  --header-bg-color1: #4e9f3d;
+  --header-bg-color2: #03d9d1;
+  --footer-bg-color: #979d9d;
+  --footer-text-color: #979d9d;
+  --footer-cost-color: #07e10a;
+  --description-text-color: #290000;
+  --max-width-lg: 980px;
+}
+
+// 
+:host {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+.border-cyan-500\/20 {
+  border-color: rgba(190, 242, 251, 0.2) !important;
+}
+app-background-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.text-white {
+  position: relative;
+  z-index: 1;
+}
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-gradient {
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes gradient {
+
+  0%,
+  100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+@keyframes bubble {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(30px, -50px);
+  }
+
+  66% {
+    transform: translate(-20px, 20px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+// Taiwind css Typography
+
+.heading_1{
+  @apply text-2xl md:text-4xl font-bold;
+}
+
+.heading_2{
+  @apply text-xl md:text-3xl font-semibold;
+}
+
+.heading_3{
+  @apply text-lg md:text-2xl font-semibold;
+}
+
+.heading_4{
+  @apply text-base md:text-xl font-medium;
+}
+
+.heading_5{
+  @apply text-sm md:text-base font-medium;
+}
+
+.heading_6{
+  @apply text-xs md:text-sm font-normal;
+}
+
+.paragraph{
+  @apply text-sm md:text-base;
+}

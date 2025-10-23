@@ -1,0 +1,16 @@
+@if (loaderEnable()) {
+    <app-custom-loader></app-custom-loader>
+}
+@else {
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-12 header mb-3">
+                <h1 class="text-center"><b>View Order</b></h1>
+              </div>
+            <div class="col-12">
+                <app-order-details-section [order]="order"></app-order-details-section>
+            </div>
+        </div>
+    </div>
+}

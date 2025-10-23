@@ -1,0 +1,479 @@
+@if(OriginalInvoiceTemplate){
+<!-- invoice.component.html -->
+<div class="a4-page pb-4 p-0 m-0 mx-auto" #invoiceContent>
+  <!-- Invoice Header -->
+  <div class="mb-3 shadow-sm" style="background-color: cornsilk">
+    <div class="d-flex align-items-center">
+      <h1 class="text-main heading py-2">Invoice BringJal</h1>
+    </div>
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <div class="text-right">
+        <p class="text-muted-custom mb-1">
+          Date: <span class="font-weight-bold text-main">April 26, 2023</span>
+        </p>
+        <p class="text-muted-custom mb-1">
+          Invoice : <span class="font-weight-bold text-main">#BRA-00335</span>
+        </p>
+      </div>
+
+      <div>
+        <img src="../../assets/icons/BringJal.svg" alt="Logo" class="logo" />
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Supplier and Customer Info -->
+    <div class="container my-4">
+      <div class="row">
+        <!-- Billed By Details Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm billed-by-section">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Billed By</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Company:</div>
+                <div class="detail-value">
+                  Bringjal Innovations Private Limited
+                </div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Location:</div>
+                <div class="detail-value">Karnataka, India</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Email:</div>
+                <div class="detail-value">info bringjal.com</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Phone:</div>
+                <div class="detail-value">+91 88010 63999</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Billed To Details Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm billed-to-section">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Billed To</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Company:</div>
+                <div class="detail-value">EPIFEAST INDIA PRIVATE LIMITED</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Address:</div>
+                <div class="detail-value">
+                  17, 7th Main Rd, Indira Nagar II Stage, Hoysala Nagar,
+                  Indiranagar, Bangalore, Karnataka, India - 560038
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="container my-4">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <table class="table table-bordered invoice-table">
+            <thead>
+              <tr class="bg-main">
+                <th class="invoice-col-md-2">#</th>
+                <th class="invoice-col-md-2">Item</th>
+                <th class="invoice-col-md-2 text-center">Quantity</th>
+                <th class="invoice-col-md-2 text-right">Rate</th>
+                <th class="invoice-col-md-2 text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Display the item details -->
+              <tr>
+                <td class="invoice-col-md-2">1</td>
+                <td class="invoice-col-md-2">Brinjal Watercan</td>
+                <td class="invoice-col-md-2 text-center">
+                  {{ totalQuantity }}
+                </td>
+                <td class="invoice-col-md-2 text-right">
+                  ₹{{ invoiceEntries[0].ratePerUnit }}
+                </td>
+                <td class="invoice-col-md-2 text-right">₹{{ totalAmount }}</td>
+              </tr>
+              <!-- Display the detailed breakdown of each entry -->
+              <tr>
+                <td colspan="5">
+                  <table class="table mb-0 invoice-table">
+                    <tbody class="invoice-summary">
+                      <tr *ngFor="let entry of invoiceEntries; let i = index">
+                        <td class="text-right" colspan="4">
+                          {{ entry.epochTime | relativedate }}
+                        </td>
+                        <td class="text-right">
+                          ₹{{ entry.quantity * entry.ratePerUnit }} /- ({{
+                          entry.quantity
+                          }}
+                          cans)
+                        </td>
+                      </tr>
+                      <tr class="bg-main text-white">
+                        <td class="text-right font-weight-bold" colspan="4">
+                          Total (in words):
+                        </td>
+                        <td class="text-right font-weight-bold text-main words">
+                          {{ totalInWords }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <table class="table mb-0 invoice-table">
+                    <tbody>
+                      <tr class="bg-main text-white">
+                        <td class="text-right font-weight-bold">Total:</td>
+                        <td class="text-right font-weight-bold text-main words">
+                          ₹{{ totalAmount }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Bank Details</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Account Name:</div>
+                <div class="detail-value">
+                  Bringjal Innovations Private Limited
+                </div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Account Number:</div>
+                <div class="detail-value">4911897834</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">IFSC:</div>
+                <div class="detail-value">KKBK0000423</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Account Type:</div>
+                <div class="detail-value">Current</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Bank:</div>
+                <div class="detail-value">Kotak Mahindra Bank</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Signature / Stamp</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Signature / Stamp</div>
+                <div class="detail-value">
+                  <img src="../../assets/My_Signatures.png" alt="Signature/Stamp" class="signature-img img-fluid" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Notes -->
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h6 class="font-weight-bold text-main">Terms and Conditions</h6>
+        <div class="italic text-gray">
+          <ul>
+            <li>
+              1. Please pay within 15 days from the date of invoice, overdue
+              interest of 14% will be charged on delayed payments.
+            </li>
+            <li>2. Please quote invoice number when remitting funds.</li>
+            <li>3. Containers should not be kept under direct sunlight.</li>
+            <li>
+              4. Containers should not be refilled with any other substances
+              external water, juices etc. which will result in discarding of
+              containers and will lead to additional charges of the container.
+            </li>
+            <li>
+              5. We will take utmost care with the water quality and container
+              cleaning, however if any issue arises we will replace the water
+              can.
+            </li>
+            <li>6. All disputes subject to Bangalore jurisdiction only.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Footer -->
+    </div>
+    <footer class="text-center py-5">
+      <p>Supplier Company</p>
+      <p class="text-main">
+        Bringjal Innovations Private Limited company.com | +91 88010 63999
+      </p>
+    </footer>
+  </div>
+  <section>
+    <!-- PDF Download Button -->
+    <div class="px-14 py-10 text-center bg-dark text-light p-2">
+      <button (click)="generatePdf()" class="buttonPdf">Download As PDF</button>
+    </div>
+  </section>
+</div>
+}@else {
+<div class="container pb-4 p-0 m-0 mx-auto widthHeight" #invoiceContent>
+  <!-- Invoice Header -->
+  <div class="mb-3 shadow-sm" style="background-color: cornsilk">
+    <div class="d-flex align-items-center">
+      <h1 class="text-main heading py-2">Invoice BringJal</h1>
+    </div>
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <div class="text-right">
+        <p class="text-muted-custom mb-1">
+          Date: <span class="font-weight-bold text-main">April 26, 2023</span>
+        </p>
+        <p class="text-muted-custom mb-1">
+          Invoice : <span class="font-weight-bold text-main">#BRA-00335</span>
+        </p>
+      </div>
+
+      <div>
+        <img src="../../assets/icons/BringJal.svg" alt="Logo" class="logo" />
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Supplier and Customer Info -->
+    <div class="container my-4">
+      <div class="row">
+        <!-- Billed By Details Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm billed-by-section">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Billed By</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Company:</div>
+                <div class="detail-value">
+                  Bringjal Innovations Private Limited
+                </div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Location:</div>
+                <div class="detail-value">Karnataka, India</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Email:</div>
+                <div class="detail-value">info bringjal.com</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Phone:</div>
+                <div class="detail-value">+91 88010 63999</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Billed To Details Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm billed-to-section">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Billed To</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Company:</div>
+                <div class="detail-value">EPIFEAST INDIA PRIVATE LIMITED</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Address:</div>
+                <div class="detail-value">
+                  17, 7th Main Rd, Indira Nagar II Stage, Hoysala Nagar,
+                  Indiranagar, Bangalore, Karnataka, India - 560038
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="container my-4">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <table class="table table-bordered invoice-table">
+            <thead>
+              <tr class="bg-main">
+                <th class="invoice-col-md-2">#</th>
+                <th class="invoice-col-md-2">Item</th>
+                <th class="invoice-col-md-2 text-center">Quantity</th>
+                <th class="invoice-col-md-2 text-right">Rate</th>
+                <th class="invoice-col-md-2 text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Display the item details -->
+              <tr>
+                <td class="invoice-col-md-2">1</td>
+                <td class="invoice-col-md-2">Brinjal Watercan</td>
+                <td class="invoice-col-md-2 text-center">
+                  {{ totalQuantity }}
+                </td>
+                <td class="invoice-col-md-2 text-right">
+                  ₹{{ invoiceEntries[0].ratePerUnit }}
+                </td>
+                <td class="invoice-col-md-2 text-right">₹{{ totalAmount }}</td>
+              </tr>
+
+              <!-- Display the detailed breakdown of each entry -->
+              <tr>
+                <td colspan="5">
+                  <table class="table mb-0 invoice-table">
+                    <tbody class="invoice-summary">
+                      <tr *ngFor="let entry of invoiceEntries; let i = index">
+                        <td class="text-right" colspan="4">
+                          {{ entry.epochTime | relativedate }}
+                        </td>
+                        <td class="text-right">
+                          ₹{{ entry.quantity * entry.ratePerUnit }} /- ({{
+                          entry.quantity
+                          }}
+                          cans)
+                        </td>
+                      </tr>
+                      <tr class="bg-main text-white">
+                        <td class="text-right font-weight-bold" colspan="4">
+                          Total (in words):
+                        </td>
+                        <td class="text-right font-weight-bold text-main words">
+                          {{ totalInWords }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <table class="table mb-0 invoice-table">
+                    <tbody>
+                      <tr class="bg-main text-white">
+                        <td class="text-right font-weight-bold">Total:</td>
+                        <td class="text-right font-weight-bold text-main words">
+                          ₹{{ totalAmount }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Bank Details</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Account Name:</div>
+                <div class="detail-value">
+                  Bringjal Innovations Private Limited
+                </div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Account Number:</div>
+                <div class="detail-value">4911897834</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">IFSC:</div>
+                <div class="detail-value">KKBK0000423</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Account Type:</div>
+                <div class="detail-value">Current</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-heading">Bank:</div>
+                <div class="detail-value">Kotak Mahindra Bank</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body text-black">
+              <h6 class="font-weight-bold text-main">Signature / Stamp</h6>
+              <div class="detail-row">
+                <div class="detail-heading">Signature / Stamp</div>
+                <div class="detail-value">
+                  <img src="../../assets/My_Signatures.png" alt="Signature/Stamp" class="signature-img img-fluid" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Notes -->
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h6 class="font-weight-bold text-main">Terms and Conditions</h6>
+        <div class="italic text-gray">
+          <ul>
+            <li>
+              1. Please pay within 15 days from the date of invoice, overdue
+              interest of 14% will be charged on delayed payments.
+            </li>
+            <li>2. Please quote invoice number when remitting funds.</li>
+            <li>3. Containers should not be kept under direct sunlight.</li>
+            <li>
+              4. Containers should not be refilled with any other substances
+              external water, juices etc. which will result in discarding of
+              containers and will lead to additional charges of the container.
+            </li>
+            <li>
+              5. We will take utmost care with the water quality and container
+              cleaning, however if any issue arises we will replace the water
+              can.
+            </li>
+            <li>6. All disputes subject to Bangalore jurisdiction only.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Footer -->
+    </div>
+    <footer class="text-center py-5">
+      <p>Supplier Company</p>
+      <p class="text-main">
+        Bringjal Innovations Private Limited company.com | +91 88010 63999
+      </p>
+    </footer>
+  </div>
+</div>
+}
+
+

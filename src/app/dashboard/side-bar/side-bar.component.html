@@ -1,0 +1,62 @@
+<div class="sidebar" [class.expanded]="isExpanded">
+  <div class="sidebar-container">
+    <header class="sidebar-header">
+      <!-- <div class="user-profile"> -->
+      <div
+        class="user-avatar capitalize"
+        [attr.aria-label]="'Avatar for ' + userName"
+        title="{{ userName }}"
+      >
+        @if (!isExpanded) {
+        {{ userName.charAt(0) | uppercase }}
+        } @else {
+        {{ userName }}
+        }
+      </div>
+      <!-- </div> -->
+      <button
+        class="toggle-btn"
+        (click)="handleSidebarToggle()"
+        [attr.aria-label]="isExpanded ? 'Collapse sidebar' : 'Expand sidebar'"
+        [attr.aria-expanded]="isExpanded"
+      >
+        <span class="chevron"></span>
+      </button>
+    </header>
+
+    <div class="nav-scroll-container">
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li *ngFor="let item of navItems" class="nav-item">
+            <a
+              [routerLink]="[item.path]"
+              routerLinkActive="active"
+              class="nav-link"
+              title="{{ item.title }}"
+              [attr.aria-label]="item.title"
+            >
+              <div class="nav-icon">
+                <img [src]="item.icon" [alt]="item.alt" />
+              </div>
+              <span class="nav-title">{{ item.title }}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <footer class="sidebar-footer">
+      <button
+        class="nav-link logout-btn"
+        (click)="onLogout()"
+        aria-label="Logout"
+        title="Logout"
+      >
+        <div class="nav-icon">
+          <img src="./assets/icons/Sidebar/LogOut.svg" alt="Logout Icon" />
+        </div>
+        <span class="nav-title">Logout</span>
+      </button>
+    </footer>
+  </div>
+</div>

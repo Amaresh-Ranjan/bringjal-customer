@@ -1,0 +1,125 @@
+.bg-main-color {
+    background-color: #02131b;
+}
+
+.quality-section {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.15));
+
+    @media (max-width: 640px) {
+        min-height: 300px;
+    }
+}
+
+/* Custom Styles for Cards (Optional) */
+.quality-check-item {
+    transition: box-shadow 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.quality-check-item:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.check-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.description {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    @media (min-width: 640px) {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background: linear-gradient(135deg, #1e88e5, #1565c0);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
+    }
+
+    i {
+        transition: transform 0.3s ease;
+    }
+
+    &:hover i {
+        transform: translateX(4px);
+    }
+}
+
+// Wave Animation
+.wave1 {
+    position: absolute;
+    width: 150%;
+    min-height: 700px;
+    opacity: 0.1;
+    left: -25%;
+    top: 0;
+    background: linear-gradient(744deg, #25b405, #020114 60%, #024318);
+    border-radius: 40%;
+    animation: wave 50000ms infinite linear;
+
+    @media (max-width: 640px) {
+        min-height: 500px;
+    }
+
+    &:nth-child(2) {
+        top: 210px;
+        opacity: 0.08;
+        animation-duration: 60000ms;
+    }
+
+    &:nth-child(3) {
+        top: 210px;
+        opacity: 0.05;
+        animation-duration: 70000ms;
+    }
+}
+
+.playing .wave1 {
+    animation-duration: 30000ms;
+
+    &:nth-child(2) {
+        animation-duration: 50000ms;
+    }
+
+    &:nth-child(3) {
+        animation-duration: 55000ms;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

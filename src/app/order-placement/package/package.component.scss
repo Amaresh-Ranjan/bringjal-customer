@@ -1,0 +1,114 @@
+.style-786 {
+  font-family: "SF Pro Display", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  color: rgb(29, 29, 31);
+}
+
+.style-787 {
+  color: rgb(134, 134, 139);
+}
+
+.style-788 {
+  display: block;
+  margin: 0px -26.3281px;
+  padding: 14px 0px 6px;
+}
+
+.style-789 {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.style-790 {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.style-791 {
+  padding-left: 26.7969px;
+  white-space: normal;
+  scroll-snap-align: center;
+  margin: 0px auto;
+}
+
+.selectionBtn {
+  text-align: left !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+}
+
+.selectionBtnLeft {
+  text-align: right !important;
+
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+}
+
+.btnSelection {
+  width: 100% !important;
+  border-radius: 15px;
+  color: rgb(29, 29, 31);
+}
+
+.buttonMain {
+  //display: flex;
+  //flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  //padding: 15px;
+  //text-align: center;
+  font-size: 17px;
+  line-height: 21.0011px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  cursor: pointer;
+  //min-height: 82.9999px;
+  //color: rgb(29, 29, 31);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  //border-color: rgb(134, 134, 139);
+  //background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btnSelection:hover::after {
+  color: white;
+}
+
+.btnSelection:hover::before {
+  color: white;
+}
+
+.btnSelection:hover {
+  color: white;
+}
+
+.buttonMain:hover::after {
+  color: white;
+}
+
+.buttonMain:hover::before {
+  color: white;
+}
+
+.buttonMain:hover {
+  color: white;
+}
+
+.btnHeroText {
+  font-weight: 700;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+.productSelectionCard {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 130px;
+  padding-bottom: 130px;
+}

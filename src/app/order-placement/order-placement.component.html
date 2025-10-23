@@ -1,0 +1,271 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+}
+<!-- <app-login-signup-modal-section></app-login-signup-modal-section> -->
+<div [ngClass]="loaderEnable() ? 'hide' : ''">
+  @if (searchAddressPresent()) { @if(inside()){
+  <!-- Order Placement section -->
+  @if(!orderPlaced()){
+  <div class="max-w-screen mx-auto">
+    <div class="flex flex-col justify-center items-center">
+      <div class="w-full checkOut">
+        <div class="mb-2 text-center">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span class="text-sm leading-tight mb-0">&nbsp;{{ str }}</span>
+          <p class="text-sm leading-tight mt-3">
+            <button
+              type="button"
+              class="border-1 border-light text-white bg-transparent px-4 py-2 rounded hover:bg-gray-200"
+              (click)="editAddress()"
+            >
+              Edit Address
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <!-- displat estimation delivery time during package selection and at payment -->
+      @if(watercanPackageSection() || paymentSection()){
+      <div class="w-full md:w-2/3 text-center mt-3 p-3 card pt-3">
+        <p>{{ eta }}</p>
+        <!-- <button
+          type="button"
+          (click)="openModalMd()"
+          class="btn btn-sm border border-dark text-dark hover:bg-gray-100 px-4 py-2 rounded"
+        >
+          <i class="bi bi-time"></i>&nbsp;View Delivery Schedule
+        </button> -->
+        <!-- <div
+          class="bg-white rounded-xl shadow-md overflow-hidden border border-cyan-100 transition-all duration-300 hover:shadow-lg mb-6">
+          <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-3 text-center">
+            <h3 class="text-white font-medium flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              View Delivery Schedule
+            </h3>
+          </div>
+        </div> -->
+        <div class="p-4">
+          <div class="w-full">
+            <app-deleivery-schedule-section
+              class="w-full"
+              [eta]="etaMsg"
+            ></app-deleivery-schedule-section>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <app-medium-screen-modal
+        [isOpen]="isMediumModalOpen"
+        [title]="'Delivery Schedule'"
+        (closeModal)="closeModalMd()"
+      >
+        <app-deleivery-schedule-section
+          class="w-full"
+          [eta]="etaMsg"
+        ></app-deleivery-schedule-section>
+      </app-medium-screen-modal>
+      }
+
+      <!-- Package selection -->
+      @if(watercanPackageSection()){
+      <div class="w-full">
+        <app-package
+          [product]="product"
+          [discountPerQuantity]="discountPerQuantity"
+          [minimum_required_quantity]="minimum_required_quantity"
+          [maximum_quantity]="maximum_quantity"
+          [deliveryChargePerCan]="deliveryChargePerCan"
+          [deliveryChargePresent]="deliveryChargePresent"
+          [userLoggedIn]="userLoggedIn"
+          [deliveryId]="deliveryId"
+          (loaderToggle)="loaderToggle()"
+          (productAdded)="productAdded($event)"
+        >
+        </app-package>
+      </div>
+      }
+
+      <!-- Device Section -->
+      @if(deviceSection()){
+      <div class="w-full">
+        <app-device-selection
+          [deviceDeposit]="deviceDeposit"
+          [devicePresent]="devicePresent"
+          [devicestock]="devicestock"
+          (loaderToggle)="loaderToggle()"
+          (joinDroppyWaitlist)="joinDroppyWaitlist()"
+          (skipDroppy)="skipDroppy()"
+          (deviceAdded)="deviceAdded()"
+        ></app-device-selection>
+      </div>
+      }
+
+      <!-- Accesories Section -->
+      @if(accessorySection()){
+      <div class="col-12">
+        <app-accessory-selection
+          [accessories]="accessories"
+          (loaderToggle)="loaderToggle()"
+          (accessoryAdded)="accessoryAdded($event)"
+        ></app-accessory-selection>
+      </div>
+      }
+
+      <!-- user details section -->
+      @if(userDetailsSection()){
+      <div class="col-12">
+        <app-login-signup
+          (authenticationDone)="userAuthenticationComplete($event)"
+        ></app-login-signup>
+      </div>
+      }
+
+      <!-- address section -->
+      @if(addressSection()){
+      <div class="col-12">
+        <app-address
+          [latitude]="latitude"
+          [longitude]="longitude"
+          [primaryAddress]="primaryAddress"
+          (searchDataRecieved)="updateAddressDataRecieved($event)"
+          (operationSuccess)="addressSubmited($event)"
+          (mapMarkerDifferentLocation)="mapMarkerDifferentLocation($event)"
+          (loaderToggle)="loaderToggle()"
+        ></app-address>
+      </div>
+      }
+
+      <!-- payment section -->
+      @if(paymentSection()){
+      <div class="col-12">
+        <app-payment
+          [cart]="cart"
+          [user]="userData"
+          (loaderToggle)="loaderToggle()"
+          (operationSuccess)="orderPlacedByPayment($event)"
+          (editAddressEmit)="editAddressCalled()"
+          (cartUpdated)="cartUpdated($event)"
+        ></app-payment>
+      </div>
+      }
+
+      <!-- cart button -->
+      @if(deviceSection() && accessorySection() || paymentSection()){
+      <div class="fixed bottom-3 right-3 z-50">
+        <button
+          (click)="openCart()"
+          type="button"
+          class="relative z-10 bg-green-600 text-white p-3 rounded-full shadow-xl hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
+        >
+          <i class="bi bi-cart4 text-xl"></i>
+        </button>
+
+        <!-- Background blur and glow effect -->
+        <div
+          class="absolute inset-0 bg-black bg-opacity-40 blur-sm rounded-full"
+        ></div>
+      </div>
+
+      <!-- cart modal -->
+      <app-medium-screen-modal
+        [isOpen]="isCartModalOpen"
+        [title]="getTitle()"
+        (closeModal)="closeCartModal()"
+      >
+        <app-cart [cart]="cart"></app-cart>
+      </app-medium-screen-modal>
+      }
+    </div>
+  </div>
+  } @else {
+  <!-- Post order placement -->
+  <div class="max-w-screen mx-auto px-2">
+    <div class="w-full">
+      <div class="col-12 checkOut">
+        <div class="sticky-top">
+          <h2 class="text-center text-light">
+            Thanks!! Looking forward to Bring Jal to your doorstep & serve you
+          </h2>
+        </div>
+      </div>
+      <div class="col-12">
+        <app-order-confirm
+          [orderDetails]="orderDetails"
+          (loaderToggle)="loaderToggle()"
+        ></app-order-confirm>
+      </div>
+    </div>
+  </div>
+  } } @else{
+  <!-- outside serviceable area -->
+  <div class="max-w-screen mx-auto px-2">
+    <div class="w-full">
+      <div class="col-12 checkOut">
+        <div class="sticky-top">
+          <div class="mb-2 text-center">
+            <i class="bi bi-geo-alt-fill"></i
+            ><span class="fs-6 lh-sm mb-0">&nbsp;{{ str }}</span>
+            <p>
+              <button
+                type="button"
+                (click)="editAddress()"
+                class="btn btn-sm bt btn-outline-light"
+              >
+                Edit Address
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <app-interested-user
+          [oMobile]="oMobile"
+          [oMobile]="oMobile"
+          [oMobile]="oMobile"
+          [latitude]="latitude"
+          [longitude]="longitude"
+          [primary_address]="primaryAddress"
+          [userId]="userId"
+          (interestSubmitted)="interestSubmitted($event)"
+          (loaderToggle)="loaderToggle()"
+        ></app-interested-user>
+      </div>
+    </div>
+  </div>
+  } } @else {
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center bg-dark">
+      <div class="col-lg-6 col-12 pt-5 pb-5">
+        <div class="card text-center w-full">
+          <div class="card text-center">
+            <div class="card-header pt-3 pb-3">
+              Please help us with your delivery location
+            </div>
+            <div class="card-body">
+              <h5 class="card-title pt-3 pb-3">
+                Type the nearest possible Google location or use GPS to locate
+              </h5>
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-9 text-center">
+                  <app-search-bar-section
+                    (loaderCallEmit)="callLoaderSearchBar($event)"
+                    (searchDataRecieved)="searchDataRecieved($event)"
+                  ></app-search-bar-section>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer pt-3 pb-3 text-muted">
+              Looking forward to Bring Jal at your doorstep
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

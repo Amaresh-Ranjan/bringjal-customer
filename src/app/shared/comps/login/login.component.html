@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-center" *ngIf="loader">
+  <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <div class="alert alert-danger" *ngIf="errLogin" role="alert">
+          {{ errLogin }}
+        </div>
+      </div>
+
+      <div class="col-12 pt-4">
+        <div class="form-floating mb-3">
+          <input
+            type="mobile"
+            class="form-control"
+            id="tel"
+            name="mobile"
+            formControlName="mobile"
+          />
+          <label for="tel"><i class="fas fa-mobile"></i> Mobile Number</label>
+        </div>
+        <div
+          *ngIf="
+            !loginForm.get('mobile')?.valid && loginForm.get('mobile')?.touched
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="loginForm.get('mobile')?.errors?.['required']"
+          >
+            <span class=""><i class="bi bi-exclamation-circle-fill"></i></span
+            >Mobile Number is Required
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="loginForm.get('mobile')?.errors?.['pattern']"
+          >
+            <span class=""><i class="bi bi-exclamation-circle-fill"></i></span
+            >Please Enter valid Mobile Number
+          </div>
+        </div>
+      </div>
+      <div class="col-12 pt-4">
+        <div class="form-floating mb-3 position-relative">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            formControlName="password"
+            #passwordInput
+          />
+          <label for="password"> <i class="fas fa-key"></i> Password </label>
+          <i
+            class="bi"
+            [ngClass]="{
+              'bi-eye-slash': showPassword,
+              'bi-eye': !showPassword
+            }"
+            (click)="togglePasswordVisibility()"
+            style="
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              cursor: pointer;
+            "
+          ></i>
+        </div>
+        <div
+          *ngIf="
+            !loginForm.get('password')?.valid &&
+            loginForm.get('password')?.touched
+          "
+          class="form-text text-muted red-text"
+        >
+          <div
+            class="text-danger"
+            *ngIf="loginForm.get('password')?.errors?.['required']"
+          >
+            <span class=""><i class="bi bi-exclamation-circle-fill"></i></span
+            >Password is Required
+          </div>
+        </div>
+      </div>
+      <div class="col-12 pt-4 d-grid gap-2">
+        <button class="btn btn-color-yellowGreen" type="submit">Login</button>
+      </div>
+    </div>
+  </form>
+</div>

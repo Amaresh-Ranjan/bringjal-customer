@@ -1,0 +1,58 @@
+<div class="max-w-screen mx-auto mb-5 px-2">
+  <div class="flex flex-col justify-center items-center">
+    <div class="w-full md:w-2/3 py-3">
+      <ng-lottie height="200px" [options]="options"></ng-lottie>
+    </div>
+
+    <div class="w-full md:w-2/3">
+      @if(loginSection) {
+      <h1 class="text-center">Login Form</h1>
+      <app-login
+        (operationSuccess)="operationSuccessLogin($event)"
+      ></app-login>
+      } @if(signupSection) {
+      <h1 class="text-center">Signup Form</h1>
+      <app-signup
+        (operationSuccess)="operationSuccessSignup($event)"
+      ></app-signup>
+      <!-- Footer -->
+      <hr class="my-2 text-gray-500" />
+      <div class="text-end mt-2 text-gray-500">
+        Already registered?
+        <a
+          (click)="showLogin()"
+          class="bg-white/10 px-3 py-1 text-sm border border-white/20 rounded-lg cursor-pointer hover:bg-white/20"
+        >
+          Login
+        </a>
+      </div>
+      } @if(sOtpSection) {
+      <h1 class="text-center">Signup OTP Form</h1>
+      <app-signup-otp
+        [mobile]="mobile"
+        [userid]="userid"
+        (operationSuccess)="operationSuccessSignupOtp($event)"
+        (loaderToggle)="showOrHideLoader()"
+      ></app-signup-otp>
+      } @if(fpMobileNumberSection) {
+      <app-forgotpassword-number
+        (operationSuccess)="operationSuccessFpNumber($event)"
+        (loaderToggle)="showOrHideLoader()"
+      ></app-forgotpassword-number>
+      } @if(fpOtpSection) {
+      <app-forgotpassword-otp
+        [mobile]="mobile"
+        (operationSuccess)="operationSuccessFpOtp($event)"
+        (loaderToggle)="showOrHideLoader()"
+      ></app-forgotpassword-otp>
+      } @if(fpNewPswSection) {
+      <app-forgotpassword-new-password
+        [mobile]="mobile"
+        [userid]="userid"
+        (operationSuccess)="operationSuccessFpPassword($event)"
+        (loaderToggle)="showOrHideLoader()"
+      ></app-forgotpassword-new-password>
+      }
+    </div>
+  </div>
+</div>

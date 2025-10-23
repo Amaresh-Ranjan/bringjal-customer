@@ -1,0 +1,207 @@
+<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100">
+  <!-- Header Section -->
+  <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-6 text-white">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold">Order Details</h2>
+        <p class="text-cyan-100 mt-1">Order #{{ order.orderid }}</p>
+      </div>
+      <div class="mt-4 md:mt-0 text-right">
+        
+        @if(order.order_status.order_cancelled.status){
+          <div class="font-medium text-red-600">Order Cancelled</div>
+        }@else {
+          <div class="text-sm text-cyan-100">Order Placed</div>
+          <div class="font-medium">{{ order.created_at | date:'medium' }}</div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary -->
+  <div class="p-6">
+    <!-- Payment Status -->
+    <div class="bg-cyan-50 rounded-xl p-4 mb-6 border border-cyan-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <div class="text-sm text-cyan-700 font-medium">Total Amount</div>
+          <div class="text-xl font-bold text-cyan-800">
+            &#8377;{{ order.order_items.final_Payable_amount }}
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="text-sm text-cyan-700 font-medium">
+              Total Amount Cleared
+            </div>
+            <div class="text-lg font-semibold text-amber-600">
+              &#8377;{{ order.payment_status.paid }}
+            </div>
+          </div>
+          <div>
+            <div class="text-sm text-cyan-700 font-medium">
+              Amount to be Paid
+            </div>
+            <div class="text-lg font-semibold text-green-600">
+              &#8377;{{ order.payment_status.balance }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div *ngIf="order.payment_details?.length > 0" class="mt-4 pt-4 border-t border-cyan-100">
+        <h4 class="text-sm font-semibold text-cyan-800 mb-2 flex items-center">
+          <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+              clip-rule="evenodd" />
+          </svg>
+          Payment Details
+        </h4>
+        <ul class="space-y-2">
+          <li *ngFor="let payment of order.payment_details; let i = index" class="flex justify-between text-sm">
+            <span class="text-gray-600">Payment {{ i + 1 }}</span>
+            <div class="text-right">
+              <span class="font-medium text-cyan-700">&#8377;{{ payment.amount }}</span>
+                <span *ngIf="payment?.type" class="text-gray-500 text-xs ml-2"
+                      >via {{ payment?.type }}</span>
+                      <span *ngIf="payment?.description_message" class="text-gray-500 text-xs ml-2"
+                      >{{ payment?.description_message }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-cyan-800 mb-4 pb-2 border-b border-gray-200">
+        Total Quantity ({{ order.order_items.cart_quantity }})
+      </h3>
+      <div *ngIf="order.order_items.items.length > 0" class="space-y-6">
+        <div *ngFor="let item of order.order_items.items" class="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+          <div class="flex justify-between items-start">
+            <div class="flex-1">
+              <p class="font-medium text-gray-800">
+                {{ item.item_quantity }} × {{ item.item_name }}
+              </p>
+              <div class="mt-2 space-y-1 text-sm text-gray-500">
+                <div *ngIf="item?.item_total_deposit > 0" class="flex items-center">
+                  <svg class="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span>Refundable Deposit: &#8377;{{
+                    item.item_total_deposit
+                    }}</span>
+                </div>
+                <div *ngIf="item?.total_delivery_gst > 0" class="flex items-center">
+                  <svg class="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span>GST: &#8377;{{
+                    item.item_cgst_cal_disc +
+                    item.item_sgst_cal_disc +
+                    item.item_igst_cal_disc
+                    }}</span>
+                </div>
+                <div *ngIf="item?.total_item_delivery_charge > 0" class="flex items-center">
+                  <svg class="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                    <path d="M3 4a1 1 0 00-1 1v1a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H15v-1a1 1 0 00-1-1H3z" />
+                    <path fill-rule="evenodd"
+                      d="M12 4a2.5 2.5 0 00-4.9 0H3v9a1 1 0 001 1h12a1 1 0 001-1V4h-5.1A2.5 2.5 0 0012 4z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span>Delivery: &#8377;{{
+                    item.total_item_delivery_charge
+                    }}</span>
+                  <span *ngIf="item?.total_delivery_gst > 0" class="ml-1 text-xs">(incl. GST: &#8377;{{
+                    item.total_delivery_gst }})</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!order?.order_type?.unsubscription_order" class="ml-4 text-right">
+              <span class="font-medium text-cyan-700">&#8377;{{ item.item_price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Membership Plan -->
+    <div *ngIf="
+        (order.order_type.installation &&
+          order.order_items.membership_applied) ||
+        order.order_type.membership_plan_subscription
+      " class="bg-cyan-50 rounded-xl p-4 mb-6">
+      <div class="flex items-center">
+        <svg class="h-5 w-5 text-cyan-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div>
+          <h4 class="font-semibold text-cyan-800">
+            {{ order.order_items.cart_membership_name }}
+          </h4>
+          <p class="text-sm text-cyan-700">
+            &#8377;{{ order.order_items.cart_membership_cost_display }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discounts -->
+    <div *ngIf="
+        order.order_items.cart_membership_discount > 0 ||
+        order.order_items.cart_items_discount > 0
+      " class="bg-amber-50 rounded-xl p-4 mb-6">
+      <h4 class="text-sm font-semibold text-amber-800 mb-3">
+        Discounts Applied
+      </h4>
+      <div class="space-y-2">
+        <div *ngIf="order.order_items.cart_membership_discount > 0" class="flex justify-between">
+          <span class="text-sm text-amber-700">Membership Discount</span>
+          <span class="text-sm font-medium text-amber-700">&#8377;{{ order.order_items.cart_membership_discount
+            }}</span>
+        </div>
+        <div *ngIf="order.order_items.cart_items_discount > 0" class="flex justify-between">
+          <span class="text-sm text-amber-700">Cart Discount</span>
+          <span class="text-sm font-medium text-amber-700">&#8377;{{ order.order_items.cart_items_discount }}</span>
+        </div>
+        <div *ngIf="order.order_items.coupon_code_applied" class="text-xs text-amber-600 italic">
+          {{ order.order_items.coupon_message }}
+        </div>
+        <div *ngIf="order.order_items.cart_total_discount"
+          class="pt-2 mt-2 border-t border-amber-100 flex justify-between">
+          <span class="text-sm font-semibold text-amber-800">Total Discount</span>
+          <span class="text-sm font-bold text-amber-800">&#8377;{{ order.order_items.cart_total_discount }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Total -->
+    <div class="bg-gray-50 rounded-xl p-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <span class="text-lg font-bold text-gray-800">Order Total</span>
+        <div class="text-left md:text-right">
+          <div class="text-2xl font-bold text-cyan-700">
+            &#8377;{{ order.order_items.final_Payable_amount }}
+          </div>
+          <div *ngIf="
+              order.order_items.cart_items_deposit > 0 ||
+              order.order_items.device_deposit > 0 ||
+              order.order_items.cart_mem_membership_deposit > 0
+            " class="text-xs text-gray-500 mt-1">
+            (Includes &#8377;{{ order.order_items.total_deposit }} fully
+            refundable deposit)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

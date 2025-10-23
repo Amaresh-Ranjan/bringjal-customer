@@ -1,0 +1,55 @@
+.cta-big {
+    width: 100%;
+    padding: 16px;
+    border-radius: 7px;
+    background-image: -o-linear-gradient(
+      28deg,
+      #f79533,
+      #f37055 16%,
+      #ef4e7b 32%,
+      #a166ab 48%,
+      #5073b8 64%,
+      #1098ad 80%,
+      #07b39b
+    );
+    background-image: linear-gradient(
+      62deg,
+      #f79533,
+      #f37055 16%,
+      #ef4e7b 32%,
+      #a166ab 48%,
+      #5073b8 64%,
+      #1098ad 80%,
+      #07b39b
+    );
+    -webkit-box-shadow: 0 12px 60px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 60px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    -o-transition: transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    content: "";
+    cursor: pointer;
+  }
+
+  .cta-big:hover {
+    -webkit-transform: scale(0.94);
+    -ms-transform: scale(0.94);
+    transform: scale(0.94);
+  }
+
+  .cta-big {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .w-inline-block {
+    max-width: 100%;
+    display: inline-block;
+  }

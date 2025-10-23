@@ -1,0 +1,462 @@
+[
+    {
+        "date": "April 26, 2023",
+        "invoice_number": "#BRA-00335",
+        "billed_by": {
+            "company": "Bringjal Innovations Private Limited",
+            "location": "Karnataka, India",
+            "email": "cervanteslaura@example.net",
+            "phone": "252.382.1097x35487"
+        },
+        "billed_to": {
+            "company": "Olson, Garcia and Johnston",
+            "address": "17305 Sanchez Grove Apt. 316, East Shannonshire, Karnataka, India - 97998"
+        },
+        "items": [
+            {
+                "description": "Brinjal Watercan",
+                "quantity": 594,
+                "rate": "\u20b955",
+                "amount": "\u20b935,640",
+                "OrderItemsDates": [
+                    {
+                        "date": "06/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95751",
+                        "quantity": 38
+                    },
+                    {
+                        "date": "01/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96980",
+                        "quantity": 47
+                    },
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93570",
+                        "quantity": 56
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93194",
+                        "quantity": 26
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95744",
+                        "quantity": 86
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92609",
+                        "quantity": 57
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96567",
+                        "quantity": 63
+                    },
+                    {
+                        "date": "01/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94806",
+                        "quantity": 10
+                    },
+                    {
+                        "date": "05/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97209",
+                        "quantity": 31
+                    },
+                    {
+                        "date": "06/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92659",
+                        "quantity": 95
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96627",
+                        "quantity": 76
+                    }
+                ]
+            }
+        ],
+        "total": "\u20b935,046",
+        "bank_details": {
+            "account_name": "Nelson, Cline and Rogers",
+            "account_number": "UZSU19241225846827",
+            "ifsc": "KKBK5427",
+            "account_type": "Savings",
+            "bank": "Lopez-Stevens"
+        }
+    },
+    {
+        "date": "April 26, 2023",
+        "invoice_number": "#BRA-00336",
+        "billed_by": {
+            "company": "Bringjal Innovations Private Limited",
+            "location": "Karnataka, India",
+            "email": "robertsonlynn@example.com",
+            "phone": "(402)451-0742x32177"
+        },
+        "billed_to": {
+            "company": "Harrington, Estes and Mosley",
+            "address": "50146 Donna Court, Williamsshire, Karnataka, India - 67296"
+        },
+        "items": [
+            {
+                "description": "Brinjal Watercan",
+                "quantity": 658,
+                "rate": "\u20b966",
+                "amount": "\u20b936,190",
+                "OrderItemsDates": [
+                    {
+                        "date": "08/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92454",
+                        "quantity": 99
+                    },
+                    {
+                        "date": "05/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95795",
+                        "quantity": 79
+                    },
+                    {
+                        "date": "07/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96368",
+                        "quantity": 40
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95978",
+                        "quantity": 97
+                    },
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91515",
+                        "quantity": 13
+                    },
+                    {
+                        "date": "07/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92539",
+                        "quantity": 34
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97998",
+                        "quantity": 97
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97059",
+                        "quantity": 64
+                    },
+                    {
+                        "date": "05/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92128",
+                        "quantity": 12
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92625",
+                        "quantity": 51
+                    },
+                    {
+                        "date": "10/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96237",
+                        "quantity": 24
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93143",
+                        "quantity": 62
+                    }
+                ]
+            }
+        ],
+        "total": "\u20b940,796",
+        "bank_details": {
+            "account_name": "Phillips-Gilbert",
+            "account_number": "HPGT22642740566214",
+            "ifsc": "KKBK3061",
+            "account_type": "Savings",
+            "bank": "Franklin, Wagner and Barron"
+        }
+    },
+    {
+        "date": "April 26, 2023",
+        "invoice_number": "#BRA-00337",
+        "billed_by": {
+            "company": "Bringjal Innovations Private Limited",
+            "location": "Karnataka, India",
+            "email": "laurieclark@example.com",
+            "phone": "(555)944-1266x347"
+        },
+        "billed_to": {
+            "company": "Collier, Gross and Harris",
+            "address": "48317 Snyder Well Suite 290, Melvinmouth, Karnataka, India - 49929"
+        },
+        "items": [
+            {
+                "description": "Brinjal Watercan",
+                "quantity": 500,
+                "rate": "\u20b954",
+                "amount": "\u20b931,000",
+                "OrderItemsDates": [
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97235",
+                        "quantity": 11
+                    },
+                    {
+                        "date": "02/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93796",
+                        "quantity": 50
+                    },
+                    {
+                        "date": "06/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96545",
+                        "quantity": 17
+                    },
+                    {
+                        "date": "02/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96396",
+                        "quantity": 72
+                    },
+                    {
+                        "date": "10/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92714",
+                        "quantity": 65
+                    },
+                    {
+                        "date": "07/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93607",
+                        "quantity": 15
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91904",
+                        "quantity": 18
+                    },
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91602",
+                        "quantity": 98
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94677",
+                        "quantity": 44
+                    }
+                ]
+            }
+        ],
+        "total": "\u20b930,500",
+        "bank_details": {
+            "account_name": "Harper, Wang and Abbott",
+            "account_number": "FCPM29329676163056",
+            "ifsc": "KKBK1028",
+            "account_type": "Savings",
+            "bank": "Santos Group"
+        }
+    },
+    {
+        "date": "April 26, 2023",
+        "invoice_number": "#BRA-00338",
+        "billed_by": {
+            "company": "Bringjal Innovations Private Limited",
+            "location": "Karnataka, India",
+            "email": "gjackson@example.net",
+            "phone": "+1-510-665-2706"
+        },
+        "billed_to": {
+            "company": "Rodriguez LLC",
+            "address": "721 Williams Brook, East Caitlynfort, Karnataka, India - 73816"
+        },
+        "items": [
+            {
+                "description": "Brinjal Watercan",
+                "quantity": 607,
+                "rate": "\u20b963",
+                "amount": "\u20b931,564",
+                "OrderItemsDates": [
+                    {
+                        "date": "01/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96899",
+                        "quantity": 100
+                    },
+                    {
+                        "date": "06/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91424",
+                        "quantity": 45
+                    },
+                    {
+                        "date": "11/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95450",
+                        "quantity": 89
+                    },
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94594",
+                        "quantity": 26
+                    },
+                    {
+                        "date": "10/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96163",
+                        "quantity": 49
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94947",
+                        "quantity": 60
+                    },
+                    {
+                        "date": "06/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b95269",
+                        "quantity": 90
+                    },
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94005",
+                        "quantity": 32
+                    }
+                ]
+            }
+        ],
+        "total": "\u20b941,276",
+        "bank_details": {
+            "account_name": "Elliott, Shaw and Wallace",
+            "account_number": "CDWS33225969570235",
+            "ifsc": "KKBK8086",
+            "account_type": "Current",
+            "bank": "Burns Group"
+        }
+    },
+    {
+        "date": "April 26, 2023",
+        "invoice_number": "#BRA-00339",
+        "billed_by": {
+            "company": "Bringjal Innovations Private Limited",
+            "location": "Karnataka, India",
+            "email": "angie28@example.net",
+            "phone": "001-504-889-6705x4197"
+        },
+        "billed_to": {
+            "company": "Cooper and Sons",
+            "address": "1436 Smith Parkway, North Jacob, Karnataka, India - 20186"
+        },
+        "items": [
+            {
+                "description": "Brinjal Watercan",
+                "quantity": 568,
+                "rate": "\u20b960",
+                "amount": "\u20b930,672",
+                "OrderItemsDates": [
+                    {
+                        "date": "03/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91773",
+                        "quantity": 36
+                    },
+                    {
+                        "date": "08/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b92791",
+                        "quantity": 32
+                    },
+                    {
+                        "date": "01/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b94612",
+                        "quantity": 84
+                    },
+                    {
+                        "date": "01/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b93342",
+                        "quantity": 13
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97247",
+                        "quantity": 46
+                    },
+                    {
+                        "date": "04/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b91331",
+                        "quantity": 68
+                    },
+                    {
+                        "date": "07/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97429",
+                        "quantity": 82
+                    },
+                    {
+                        "date": "08/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b97311",
+                        "quantity": 56
+                    },
+                    {
+                        "date": "09/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96837",
+                        "quantity": 63
+                    },
+                    {
+                        "date": "07/08/2024",
+                        "time": "12:00 AM",
+                        "amount": "\u20b96012",
+                        "quantity": 91
+                    }
+                ]
+            }
+        ],
+        "total": "\u20b938,624",
+        "bank_details": {
+            "account_name": "Curry-Mcguire",
+            "account_number": "GOGW15988470900814",
+            "ifsc": "KKBK1351",
+            "account_type": "Current",
+            "bank": "Vasquez, Patel and Ware"
+        }
+    }
+]

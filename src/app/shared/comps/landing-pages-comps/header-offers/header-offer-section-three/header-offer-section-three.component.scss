@@ -1,0 +1,73 @@
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 22px;
+    background: -o-linear-gradient(left,
+        var(--header-bg-color1),
+        var(--header-bg-color2));
+    background: -webkit-gradient(linear,
+        left top,
+        right top,
+        from(var(--header-bg-color1)),
+        to(var(--header-bg-color2)));
+    background: linear-gradient(to right,
+        var(--header-bg-color1),
+        var(--header-bg-color2));
+  }
+
+  .marquee {
+    display: inline-block;
+    padding-left: 100%;
+    -webkit-animation: marquee 14s linear infinite;
+    animation: marquee 14s linear infinite;
+  }
+
+  .item {
+    display: inline-block;
+    padding: 0 20px;
+  }
+
+  .emoji-text {
+    font-size: 1.6rem;
+    margin-right: 20px;
+  }
+
+  .letters {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  .landingImgContainer {
+    max-width: var(--max-width-lg);
+    margin: auto;
+    padding: 10px;
+  }
+
+  @-webkit-keyframes marquee {
+    from {
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+
+    to {
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+
+    to {
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }
+
+  @media screen and (max-width: 767px) {}
+
+  @media screen and (min-width: 768px) {}

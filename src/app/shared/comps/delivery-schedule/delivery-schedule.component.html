@@ -1,0 +1,193 @@
+<div class="accordion" id="accordionExample">
+
+    <!-- Monday -->
+    @if(deliveryDays[0].enable && deliveryDays[0].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"  aria-controls="collapseOne">
+                <b>MONDAY</b>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[0].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Tuesday -->
+    @if(deliveryDays[1].enable && deliveryDays[1].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <b>TUESDAY</b>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[1].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Wednesday -->
+    @if(deliveryDays[2].enable && deliveryDays[2].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <b>WEDNESDAY</b>
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[2].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Thursday -->
+    @if(deliveryDays[3].enable && deliveryDays[3].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <b>THURSDAY</b>
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[3].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Friday -->
+    @if(deliveryDays[4].enable && deliveryDays[4].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                <b>FRIDAY</b>
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[4].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Saturday -->
+    @if(deliveryDays[5].enable && deliveryDays[5].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                <b>SATURDAY</b>
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[5].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+
+    <!-- Sunday -->
+    @if(deliveryDays[6].enable && deliveryDays[6].slots.length > 0){
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                <b>SUNDAY</b>
+              </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <ul>
+                      @for (item of deliveryDays[6].slots; track $index) {
+                          <li> 
+                              @if(item.enable){
+                                  <h4><strong>Order before {{item.cutoff | timePipe}}, </strong>to get delivery before {{item.deliveryEndTime | timePipe}}. Post {{item.cutoff | timePipe}} you will get delivery in next available slot.</h4>
+                              }
+                              @else{
+                                  <h4>-</h4>
+                              }
+                          </li>
+                      }
+                  </ul>
+              </div>
+            </div>
+          </div>
+    }
+    
+    
+  </div>

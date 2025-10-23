@@ -1,0 +1,15 @@
+<div
+  class="relative inset-0 w-full h-full overflow-hidden bg-gradient-to-br from-cyan-900 via-gray-900 to-purple-900
+ blur-sm transform"
+>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    @for (bubble of bubbles; track bubble.id) {
+    <app-bubble
+      [size]="bubble.size"
+      [x]="bubble.x"
+      [y]="bubble.y"
+      [delay]="bubble.delay"
+    ></app-bubble>
+    }
+  </div>
+</div>

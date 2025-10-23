@@ -1,0 +1,174 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+} @else {
+  @if(userData.status.subscribed===false){
+<div class="header sticky top-0 z-50">
+  <h1 class="heading_1 text-center text-cyan-800">Place Order</h1>
+</div>
+<div class="min-h-screen flex items-center justify-center p-3 md:p-5">
+  <div class="w-full max-w-screen-2xl">
+    <!-- Main Card -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100">
+      <!-- Card Header -->
+      <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-2 md:p-6 text-center text-white">
+        <h2 class="text-2xl font-semibold">Subscription Required</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-2 md:p-6 capitalize">
+        <div class="bg-cyan-50 rounded-xl p-2 md:p-6 border border-cyan-100">
+          <div class="text-center">
+            <h2 class="text-xl font-semibold text-cyan-800 mb-4">
+              In order to subscribe to a package, please first place an
+              installation order
+            </h2>
+            <p class="text-cyan-700">
+              Click the button below to get started with your subscription
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full text-center mt-5">
+      <button (click)="goToProductSelectionPage()" type="button" class="button">
+        <div class="button-top">Subscribe Package</div>
+        <div class="button-bottom"></div>
+        <div class="button-base"></div>
+      </button>
+    </div>
+  </div>
+</div>
+}@else {
+<div class="min-h-screen bg-gray-50">
+  <div class="header sticky top-0 z-50">
+    <h1 class="text-center heading_1 text-cyan-800">
+      Unsubscribe Package
+    </h1>
+  </div>
+  <div class="pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-screen-2xl mx-auto">
+      <!-- Main Card -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100 transition-all duration-300 hover:shadow-xl">
+        <!-- Card Header -->
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-6 text-center text-white">
+          <h2 class="heading_2">Unsubscribe Package</h2>
+          <p class="mt-1 text-cyan-100 text-sm opacity-90">We're sorry to see you go. Please let us know how we can improve.</p>
+        </div>
+        
+        <!-- Card Body -->
+        <div class="p-6 space-y-6">
+          <!-- Reason Field -->
+          <div class="space-y-2">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-cyan-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <label for="reason" class="block text-sm font-medium text-cyan-800">
+                Reason for Unsubscription
+              </label>
+            </div>
+            <textarea 
+              id="reason"
+              name="reason"
+              rows="4"
+              [(ngModel)]="Reason"
+              class="w-full px-4 py-3 text-sm rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200 placeholder-cyan-400"
+              placeholder="Please tell us why you're unsubscribing..."
+            ></textarea>
+          </div>
+
+          <!-- Current Location Radio Group -->
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-cyan-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <p class="text-sm font-medium text-cyan-800">
+                Are you at your current location?
+              </p>
+            </div>
+            <div class="flex items-center space-x-6 pl-7">
+              <label class="inline-flex items-center group cursor-pointer">
+                <div class="relative flex items-center">
+                  <input 
+                    type="radio" 
+                    name="currentlocation" 
+                    [value]="true" 
+                    [(ngModel)]="currentlocation"
+                    class="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-cyan-300"
+                  >
+                  <span class="ml-2 text-gray-700 group-hover:text-cyan-700 transition-colors">Yes</span>
+                </div>
+              </label>
+              <label class="inline-flex items-center group cursor-pointer">
+                <div class="relative flex items-center">
+                  <input 
+                    type="radio" 
+                    name="currentlocation" 
+                    [value]="false" 
+                    [(ngModel)]="currentlocation"
+                    class="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-cyan-300"
+                  >
+                  <span class="ml-2 text-gray-700 group-hover:text-cyan-700 transition-colors">No</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Availability Date -->
+          <div class="space-y-2 pt-1">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-cyan-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <label for="availabilityDate" class="block text-sm font-medium text-cyan-800">
+                When will you be available for final delivery?
+              </label>
+            </div>
+            <div class="pl-7">
+              <input 
+                type="date" 
+                id="availabilityDate"
+                name="availabilityDate" 
+                [(ngModel)]="availabilityDate"
+                class="w-full md:w-2/3 px-4 py-2.5 text-sm rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200 focus:outline-none focus:shadow-outline"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="bg-gray-50 px-6 py-5 border-t border-gray-100 mt-2">
+          <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0">
+            <button
+              (click)="unsubscribePackage()"
+              class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
+              [disabled]="!Reason || !availabilityDate"
+              [class.opacity-70]="!Reason || !availabilityDate"
+              [class.cursor-not-allowed]="!Reason || !availabilityDate"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              Confirm Unsubscription
+            </button>
+            <div class="w-full sm:w-auto text-center sm:text-right">
+              <p *ngIf="message" class="text-sm font-medium px-4 py-2 rounded-lg inline-block" 
+                 [class.bg-green-50]="message.includes('success')" 
+                 [class.text-green-700]="message.includes('success')"
+                 [class.bg-red-50]="!message.includes('success')" 
+                 [class.text-red-700]="!message.includes('success')">
+                {{message}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+} @defer() {
+<app-footer-section></app-footer-section>
+}

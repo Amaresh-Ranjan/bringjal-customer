@@ -1,0 +1,162 @@
+<div class="max-w-screen mx-auto px-2" >
+  <div class="flex flex-col justify-center items-center">
+    <div class="w-full py-2">
+      <h3
+        class="text-center text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800"
+      >
+        <b>Drag the Pin to Your Exact Location</b>
+      </h3>
+    </div>
+    <div class="w-full bg-white shadow-md rounded-lg">
+      <div class="w-full">
+        <google-map width="100%" height="250px" [center]="center" [zoom]="zoom">
+          <map-marker
+            [position]="markerPosition"
+            [options]="markerOptions"
+            (mapDragend)="markerDragEnd($event)"
+          ></map-marker>
+        </google-map>
+      </div>
+    </div>
+
+    <div class="w-full pb-3">
+      <form [formGroup]="addAddressForm" novalidate>
+        <div class="pt-2 text-gray-600">
+          <b class="text-dark">Primary Address:</b> {{ primaryAddress }}
+        </div>
+        <div class="pt-2">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="secondaryAddress"
+              name="secondaryAddress"
+              formControlName="secondaryAddress"
+            />
+            <label for="secondaryAddress"
+              >House/flat number/Appartment name</label
+            >
+          </div>
+          <small
+            *ngIf="
+              !addAddressForm.get('secondaryAddress').valid &&
+              addAddressForm.get('secondaryAddress').touched
+            "
+            class="red-text"
+          >
+            <div
+              *ngIf="addAddressForm.get('secondaryAddress').errors['required']"
+              class="text-red-500"
+            >
+              Field is Required
+            </div>
+            <div
+              *ngIf="addAddressForm.get('secondaryAddress').errors['maxlength']"
+              class="text-red-500"
+            >
+              Maximum 30 characters are allowed
+            </div>
+          </small>
+        </div>
+        <div class="pt-2">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="landmark"
+              name="landmark"
+              formControlName="landmark"
+            />
+            <label for="landmark">Landmark(if any)</label>
+          </div>
+          <small
+            *ngIf="
+              !addAddressForm.get('landmark').valid &&
+              addAddressForm.get('landmark').touched
+            "
+            class="red-text"
+          >
+            <div *ngIf="addAddressForm.get('landmark').errors['maxlength']"
+            class="text-red-500"
+            >
+              Maximum 30 characters are allowed
+            </div>
+          </small>
+        </div>
+        <div class="w-full">
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Floor Input -->
+            <div class="w-full md:w-1/2 pt-2">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="floor"
+                  name="floor"
+                  formControlName="floor"
+                />
+                <label for="floor">Floor</label>
+              </div>
+              <small
+                *ngIf="
+                  !addAddressForm.get('floor').valid &&
+                  addAddressForm.get('floor').touched
+                "
+                class="text-red-500"
+              >
+                <div class="text-red-500" *ngIf="addAddressForm.get('floor').errors['required']">
+                  Field is Required
+                </div>
+              </small>
+            </div>
+
+            <!-- Lift Checkbox with Improved UI -->
+            <div class="w-full md:w-1/2 pt-2">
+              <div class="flex items-center space-x-2">
+                <!-- Custom Styled Checkbox -->
+                <input
+                  class="form-check-input w-5 h-5 rounded-full border-2 border-gray-300 focus:ring-2 focus:ring-green-500 checked:bg-green-500 transition duration-200"
+                  type="checkbox"
+                  id="liftCheckbox"
+                  formControlName="lift"
+                />
+                <label
+                  class="form-check-label text-lg text-gray-800 font-semibold"
+                  for="liftCheckbox"
+                >
+                  Lift
+                </label>
+              </div>
+              <small
+                *ngIf="
+                  !addAddressForm.get('lift').valid &&
+                  addAddressForm.get('lift').touched
+                "
+                class="text-red-500"
+              >
+                <div class="text-red-500" *ngIf="addAddressForm.get('lift').errors['required']">
+                  Please select if lift is available
+                </div>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full pt-2 d-grid gap-2">
+          <button
+            type="submit"
+           (click)="onNext()" 
+            class="bg-green-500 hover:bg-green-600 text-white font-semibold text-lg py-3 px-6 rounded-full w-full"
+          >
+            <span>
+              Submit <i clas="bi bi-arrow-right" class="ml-1"></i></span
+            ><span
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

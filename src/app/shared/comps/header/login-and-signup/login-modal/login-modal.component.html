@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-title">Login</h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-describedby="modal-title"
+        (click)="modal.dismiss('Cross click')"
+    ></button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="col-12">
+            <app-login (operationSuccess)="operationSuccess($event)"></app-login>
+        </div>
+        <div class="col-12">
+            <hr>
+        </div>
+        <div class="col-12 text-center">
+            <a (click)="showForgotPassword()" class="green-text">Forgot password? Click here</a>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="text-muted">
+        Not Registered yet? <a (click)="showSignup()" class="btn btn-light btn-sm">Signup</a>
+    </div>
+</div>

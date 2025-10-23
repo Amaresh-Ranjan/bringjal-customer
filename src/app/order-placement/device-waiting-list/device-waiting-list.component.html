@@ -1,0 +1,271 @@
+<!-- Main Container -->
+<div
+  class=" flex justify-center items-center bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8"
+>
+  <!-- Card Container -->
+  <div
+    class="max-w-xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.01] transition-all duration-300"
+  >
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 py-6 px-8">
+      <div class="w-24 h-24 mx-auto">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <h2 class="mt-4 text-2xl font-bold text-center text-white">
+        Join Our Waitlist
+      </h2>
+      <p class="mt-2 text-center text-blue-100">
+        We're expanding fast! Leave your details and we'll notify when device will be available.
+      </p>
+    </div>
+
+    <!-- Form Section -->
+    @defer {
+    <div class="px-8 py-6">
+      <form
+        [formGroup]="interestedUserForm"
+        class="space-y-6"
+      >
+        <!-- Error Alert -->
+        <div class="transition-all duration-300" *ngIf="errArea">
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-md">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 text-red-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-red-700">{{ errArea }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Name Field -->
+        <div class="relative">
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="peer w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 placeholder-transparent transition-colors duration-300"
+            placeholder="Name"
+            [class.border-red-500]="
+              interestedUserForm.get('name').invalid &&
+              (interestedUserForm.get('name').dirty ||
+                interestedUserForm.get('name').touched)
+            "
+            aria-describedby="nameError"
+          />
+          <label
+            for="name"
+            class="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-blue-600"
+          >
+            <i class="fas fa-user-alt mr-2"></i>Name
+          </label>
+          <small
+            id="nameError"
+            *ngIf="
+              interestedUserForm.get('name').invalid &&
+              (interestedUserForm.get('name').dirty ||
+                interestedUserForm.get('name').touched)
+            "
+            class="mt-1 text-xs text-red-500 block"
+          >
+            <span *ngIf="interestedUserForm.get('name').errors?.['required']"
+              >Name is required</span
+            >
+          </small>
+        </div>
+
+        <!-- Email Field -->
+        <div class="relative">
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="peer w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 placeholder-transparent transition-colors duration-300"
+            placeholder="Email"
+            [class.border-red-500]="
+              interestedUserForm.get('email').invalid &&
+              (interestedUserForm.get('email').dirty ||
+                interestedUserForm.get('email').touched)
+            "
+            aria-describedby="emailError"
+          />
+          <label
+            for="email"
+            class="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-blue-600"
+          >
+            <i class="fas fa-at mr-2"></i>Email
+          </label>
+          <small
+            *ngIf="
+              !interestedUserForm.get('email').valid &&
+              interestedUserForm.get('email').touched
+            "
+            class="mt-1 text-xs text-red-500 block"
+          >
+            <span *ngIf="interestedUserForm.get('email').errors?.['required']">
+              Email address is Required
+            </span>
+            <span *ngIf="interestedUserForm.get('email').errors?.['email']">
+              Please Enter valid Email address
+            </span>
+          </small>
+        </div>
+
+        <!-- Mobile Field -->
+        <div class="relative">
+          <input
+            type="tel"
+            id="mobile"
+            formControlName="mobile"
+            class="peer w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 placeholder-transparent transition-colors duration-300"
+            placeholder="Mobile Number"
+            [class.border-red-500]="
+              interestedUserForm.get('mobile').invalid &&
+              (interestedUserForm.get('mobile').dirty ||
+                interestedUserForm.get('mobile').touched)
+            "
+            aria-describedby="mobileError"
+          />
+          <label
+            for="mobile"
+            class="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-blue-600"
+          >
+            <i class="fas fa-mobile mr-2"></i>Mobile Number
+          </label>
+          <small
+            *ngIf="
+              !interestedUserForm.get('mobile').valid &&
+              interestedUserForm.get('mobile').touched
+            "
+            class="mt-1 text-xs text-red-500 block"
+          >
+            <span *ngIf="interestedUserForm.get('mobile').errors?.['required']">
+              Mobile Number is Required
+            </span>
+            <span *ngIf="interestedUserForm.get('mobile').errors?.['pattern']">
+              Please Enter valid Mobile Number
+            </span>
+          </small>
+        </div>
+        <!-- End Mobile Field -->
+        <!-- Primary Address -->
+        <div class="relative">
+          <textarea
+            id="primary_address"
+            formControlName="primary_address"
+            class="peer w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 placeholder-transparent transition-colors duration-300 resize-none"
+            placeholder="Primary Address"
+            [class.border-red-500]="
+              interestedUserForm.get('primary_address').invalid &&
+              (interestedUserForm.get('primary_address').dirty ||
+                interestedUserForm.get('primary_address').touched)
+            "
+            aria-describedby="primary_addressError"
+            rows="3"
+          ></textarea>
+          <label
+            for="primary_address"
+            class="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-blue-600"
+          >
+            <i class="fas fa-map-marker-alt mr-2"></i>Primary Address
+          </label>
+          <small
+            *ngIf="
+              !interestedUserForm.get('primary_address').valid &&
+              interestedUserForm.get('primary_address').touched &&
+              (interestedUserForm.get('primary_address').errors?.['required'] ||
+                interestedUserForm.get('primary_address').errors?.['maxlength'] ||
+                interestedUserForm.get('primary_address').errors?.['minlength'])
+            "
+            class="mt-1 text-xs text-red-500 block"
+          >
+            <span
+              *ngIf="
+                interestedUserForm.get('primary_address').errors?.['required']
+              "
+            >
+              Primary Address is Required
+            </span>
+            <span
+              *ngIf="
+                interestedUserForm.get('primary_address').errors?.['maxlength']
+              "
+            >
+              Primary Address cannot exceed 250 characters.
+            </span>
+            <span
+              *ngIf="
+                interestedUserForm.get('primary_address').errors?.['minlength']
+              "
+            >
+              Primary Address must be at least 10 characters.
+            </span>
+          </small>
+        </div>
+        <!-- End Primary Address -->
+          <div class="flex justify-center space-x-3">
+          <button
+            (click)="droppyWait()"
+            type="button"
+            class="btn btn-lg border-2 border-gray-800 text-gray-800 rounded-lg py-2 px-4 pl-3 hover:bg-gray-900 hover:text-white"
+          >
+            <h3 class="text-lg font-semibold">JOIN WAITLIST</h3>
+          </button>
+          <button
+            type="button"
+            (click)="skipAddDroppy()"
+            class="btn btn-lg border-2 border-gray-800 text-gray-800 rounded-lg py-2 px-4 mr-3 hover:bg-gray-900 hover:text-white"
+          >
+            No Thank You
+          </button>
+        </div>
+        <!-- Submit Button -->
+        <!-- <div class="pt-4">
+          <button
+            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transform transition-all duration-300 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            [disabled]="!interestedUserForm.valid || dBtnOutOfdelivery"
+            type="submit"
+          >
+            <span class="flex items-center justify-center">
+              <span>Submit</span>
+              <svg
+                *ngIf="dBtnOutOfdelivery"
+                class="animate-spin ml-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            </span>
+          </button>
+        </div> -->
+      </form>
+    </div>
+    }
+  </div>
+</div>

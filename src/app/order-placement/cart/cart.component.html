@@ -1,0 +1,132 @@
+<div class="max-w-screen mx-auto px-4">
+  <div class="flex flex-col space-y-4">
+    <!-- Cart Items -->
+    @if(cart?.items.length > 0) {
+    <div class="bg-white/10 backdrop-blur rounded-xl shadow-lg overflow-hidden">
+      <div class="divide-y divide-gray-200">
+        @for (item of cart?.items; track $index) {
+        <div class="p-4 space-y-3">
+          <!-- Item Header -->
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-semibold text-gray-900">
+              {{ item.item_name }}
+            </h3>
+            <span
+              class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+            >
+              Qty: {{ item.item_quantity }}
+            </span>
+          </div>
+
+          <!-- Price Details -->
+          @if (item?.item_price) {
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Price:</span>
+            <span class="font-medium">₹{{ item?.item_price }}</span>
+          </div>
+          }
+
+          <!-- GST Details -->
+          @if(item?.item_cgst_cal_disc > 0 || item?.item_sgst_cal_disc > 0 ||
+          item?.item_igst_cal_disc > 0) {
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-500">GST:</span>
+            <span class="text-gray-600"
+              >₹{{
+                item?.item_cgst_cal_disc +
+                  item?.item_sgst_cal_disc +
+                  item?.item_igst_cal_disc
+              }}</span
+            >
+          </div>
+          }
+
+          <!-- Delivery Charge -->
+          @if(item?.item_delivery_charge) {
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-500">Delivery Charge:</span>
+            <span class="text-gray-600">
+              ₹{{ item?.total_item_delivery_charge }}
+              @if(item?.total_delivery_gst > 0) {
+              <span class="text-gray-400"
+                >(incl. ₹{{ item?.total_delivery_gst }} GST)</span
+              >
+              }
+            </span>
+          </div>
+          }
+
+          <!-- Deposit -->
+          @if(item.item_total_deposit) {
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-500">Refundable Deposit:</span>
+            <span class="text-blue-600 font-medium"
+              >₹{{ item.item_total_deposit }}</span
+            >
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Membership Section -->
+    @if(cart?.membership_applied) {
+    <div class="bg-white/10 backdrop-blur rounded-xl shadow-lg p-4 space-y-3">
+      <h3 class="text-lg font-semibold text-gray-900">
+        {{ cart?.cart_membership_name }}
+      </h3>
+      <div class="flex justify-between">
+        <span class="text-gray-600">Price:</span>
+        <span class="font-medium"
+          >₹{{ cart?.cart_membership_cost_display }}</span
+        >
+      </div>
+    </div>
+    }
+
+    <!-- Discounts Section -->
+    @if(cart?.cart_membership_discount > 0 || cart?.cart_items_discount > 0) {
+    <div class="bg-white/10 backdrop-blur rounded-xl shadow-lg p-4 space-y-3">
+      @if(cart?.cart_membership_discount > 0) {
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-600">Membership Discount:</span>
+        <span class="text-green-600"
+          >-₹{{ cart?.cart_membership_discount }}</span
+        >
+      </div>
+      } @if(cart?.cart_items_discount > 0) {
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-600">Cart Discount:</span>
+        <span class="text-green-600">-₹{{ cart?.cart_items_discount }}</span>
+      </div>
+      } @if(cart?.coupon_code_applied) {
+      <div class="text-green-600 font-medium">{{ cart?.coupon_message }}</div>
+      } @if (cart?.cart_total_discount) {
+      <div class="flex justify-between font-semibold border-t pt-2 mt-2">
+        <span>Total Discount:</span>
+        <span class="text-green-600">-₹{{ cart?.cart_total_discount }}</span>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Final Amount Section -->
+    @if(cart?.final_Payable_amount) {
+    <div class="bg-white/10 backdrop-blur rounded-xl shadow-lg p-4">
+      <div class="space-y-2">
+        <h3 class="text-xl font-bold text-gray-900">Final Payable Amount</h3>
+        <div class="text-2xl font-bold text-green-600">
+          ₹{{ cart?.final_Payable_amount }}
+          @if(cart?.total_deposit > 0) {
+          <div class="text-sm font-normal text-gray-500">
+            (₹{{ cart?.total_deposit }} fully refundable deposit)
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

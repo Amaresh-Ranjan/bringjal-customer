@@ -1,0 +1,528 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+} @else {
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="header sticky top-0 z-50">
+    <h1 class="text-center heading_1 text-cyan-800">Add Bringjal Cash</h1>
+  </div>
+
+  <div class="max-w-screen-2xl mx-auto pb-4 px-4 md:px-6">
+    <!-- Wallet Section -->
+    <div
+      class="bg-white rounded-xl shadow-lg overflow-hidden border border-cyan-100"
+    >
+      <!-- Card Header -->
+      <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-6 text-white">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-bold">Wallet Balance</h2>
+            <p class="text-cyan-100">Your current available balance</p>
+            <p class="font-semibold">
+              <span class="text-white mr-2">Current Order Balance:</span>
+              &#8377;{{ currentOrderBal }}
+            </p>
+            @if(userData?.PendingAmount>=0){
+            <p class="text-cyan-100">
+              <span class="text-white mr-2">Pending Amount:</span>
+              <span class="font-semibold"
+                >&#8377;{{ userData?.PendingAmount }}</span
+              >
+            </p>
+          }
+          </div>
+          <div class="text-right">
+            <p class="text-4xl font-bold">&#8377;{{ walletAmount }}/-</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-6 space-y-6">
+        <!-- Add Money Form -->
+        <form
+          [formGroup]="walletForm"
+          (ngSubmit)="addMoneyToBringjalWallet()"
+          class="space-y-6"
+        >
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Enter Amount to Add:
+            </label>
+            <input
+              type="number"
+              class="w-full rounded-lg border-gray-300 py-3 px-4 shadow-sm focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 border-2 transition-all"
+              formControlName="wallet"
+              placeholder="Enter amount"
+            />
+          </div>
+
+          <!-- Error Message -->
+          <div
+            *ngIf="invalidAmountError"
+            class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded"
+          >
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 text-amber-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-amber-700">
+                  You have a pending amount of
+                  <span class="font-semibold"
+                    >&#8377;{{ userData.PendingAmount }}</span
+                  >. Please add minimum
+                  <span class="font-semibold"
+                    >&#8377;{{ userData.PendingAmount }}</span
+                  >
+                  to proceed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Amount Buttons -->
+          <div class="grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              (click)="addHun()"
+              class="py-3 px-4 border border-cyan-200 rounded-lg text-cyan-700 bg-white hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 font-medium"
+            >
+              + &#8377;100
+            </button>
+            <button
+              type="button"
+              (click)="addFHun()"
+              class="py-3 px-4 border border-cyan-200 rounded-lg text-cyan-700 bg-white hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 font-medium"
+            >
+              + &#8377;500
+            </button>
+            <button
+              type="button"
+              (click)="addTh()"
+              class="py-3 px-4 border border-cyan-200 rounded-lg text-cyan-700 bg-white hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 font-medium"
+            >
+              + &#8377;1000
+            </button>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="w-full flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 transform hover:scale-[1.02]"
+            >
+              Add &#8377;{{ walletForm.get("wallet")?.value || 0 }} to Wallet
+            </button>
+          </div>
+        </form>
+
+        <!-- Information Card -->
+        <div class="bg-cyan-50 border border-cyan-100 rounded-xl p-4">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0">
+              <svg
+                class="h-6 w-6 text-cyan-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-sm font-medium text-cyan-800">
+                Wallet Information
+              </h4>
+              <p class="text-sm text-cyan-700 mt-1 capitalize">
+                Added money can be used for water can purchases and other
+                services. Your wallet balance never expires.
+                <span class="font-semibold" *ngIf="userData.PendingAmount > 0"
+                  >You have a pending amount of &#8377;{{
+                    userData.PendingAmount
+                  }}.</span
+                >
+                <span *ngIf="userData.PendingAmount > 0">
+                  Please add minimum &#8377;{{ userData.PendingAmount }} to
+                  proceed.</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Segments For Pending Amount And Wallet Transactions -->
+    <div class="w-full mt-4">
+      <!-- Segment Toggle -->
+      <div
+        class="flex justify-center flex-wrap md:gap-6 gap-2 border-b border-cyan-500 p-2"
+      >
+        <button
+          class="py-2 px-4 text-white font-semibold rounded-md transition-all"
+          [ngClass]="{
+            'bg-cyan-500': activeSegment === 'walletTransactionsHistory',
+            'bg-cyan-300': activeSegment !== 'walletTransactionsHistory'
+          }"
+          (click)="setActiveSegment('walletTransactionsHistory')"
+        >
+          Wallet Transactions History
+        </button>
+        <button
+          class="py-2 px-4 text-white font-semibold rounded-md transition-all"
+          [ngClass]="{
+            'bg-cyan-500': activeSegment === 'previousPendingPayment',
+            'bg-cyan-300': activeSegment !== 'previousPendingPayment'
+          }"
+          (click)="setActiveSegment('previousPendingPayment')"
+        >
+          Previous Pending Payment
+        </button>
+      </div>
+
+      <!-- Content Display -->
+      <div class="mt-4">
+        <div
+          *ngIf="activeSegment === 'previousPendingPayment'"
+          class="p-4 bg-cyan-50 rounded-md"
+        >
+          <!-- Pending Amount -->
+          @if (userData?.PendingAmount>0) {
+          <div class="mt-8">
+            <div class="w-full text-center text-cyan-800 mb-4">
+              <h2 class="heading_2 capitalize">Previous Pending Payment</h2>
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2"
+            >
+              @for (pending of userData?.PendingAmountDetails; track $index) {
+              <div
+                class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+              >
+                <div class="p-6">
+                  <div class="flex items-center justify-between mb-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800"
+                    >
+                      <svg
+                        class="w-4 h-4 mr-1.5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Pending Payment
+                    </span>
+                    <span class="font-medium text-gray-600">{{
+                      pending?.timestamp | date
+                    }}</span>
+                  </div>
+
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-gray-600">Amount Due</span>
+                      <span class="font-medium text-gray-900"
+                        >&#8377;{{ pending?.amount }}</span
+                      >
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <span class="text-gray-600">Order ID</span>
+                      <span
+                        class="font-mono text-sm text-cyan-600 bg-cyan-50 px-2 py-1 rounded"
+                        >{{ pending?.orderId }}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+          }@else {
+          <div class="mt-8 mb-4">
+            <div class="w-full text-center text-cyan-800 mb-4">
+              <h2 class="heading_2 capitalize">No Pending Payment</h2>
+            </div>
+          </div>
+          }
+        </div>
+        <!-- Wallet Transactions History -->
+        <div
+          *ngIf="activeSegment === 'walletTransactionsHistory'"
+          class="p-4 bg-cyan-50 rounded-md"
+        >
+          <!-- Previous Transactions Section -->
+          @if (previousTransactions.length > 0) {
+          <div class="mt-12">
+            <div class="text-center mb-8">
+              <h2 class="heading_2 text-cyan-800 mb-2">
+                Wallet Transaction History
+              </h2>
+            </div>
+
+            <div class="space-y-3">
+              @for (transaction of previousTransactions; track i; let i=$index)
+              {
+              <div
+                class="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden hover:-translate-y-0.5"
+              >
+                <div class="p-5">
+                  <div class="flex items-start justify-between">
+                    <!-- Left side with icon and details -->
+                    <div class="flex items-start space-x-4">
+                      <div>
+                        <h3
+                          class="font-medium text-gray-900 group-hover:text-cyan-700 transition-colors"
+                        >
+                          {{ transaction.description }}
+                        </h3>
+                        <div class="flex items-center mt-1 space-x-3">
+                          <span class="text-sm text-gray-500 flex items-center">
+                            <svg
+                              class="w-4 h-4 mr-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              ></path>
+                            </svg>
+                            {{ transaction.transaction_date | relativedate }}
+                          </span>
+                          <span
+                            [ngClass]="{
+                              'bg-cyan-100 text-cyan-800':
+                                transaction.transaction_type.credit,
+                              'bg-red-100 text-red-800':
+                                !transaction.transaction_type.credit
+                            }"
+                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                          >
+                            {{
+                              transaction.transaction_type.credit
+                                ? "Credit"
+                                : "Debit"
+                            }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Right side with amount -->
+                    <div class="text-right">
+                      <p
+                        [ngClass]="{
+                          'text-cyan-600': transaction.transaction_type.credit,
+                          'text-red-600': !transaction.transaction_type.credit
+                        }"
+                        class="text-lg font-bold"
+                      >
+                        {{
+                          transaction.transaction_type.credit ? "+" : "-"
+                        }}&#8377;{{ transaction.amount }}
+                      </p>
+                      <p class="text-xs text-gray-400 mt-1">
+                        @if (transaction.transaction_type.credit) { Added to
+                        wallet } @else { Deducted from wallet }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+            @if (previousTransactions.length < totalTransactions) {
+            <div class="w-full px-4 mb-6 mt-8">
+              <div class="flex justify-center items-center">
+                <button
+                  (click)="showmore()"
+                  class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 transform focus:outline-none hover:scale-y-105 md:w-1/2 w-full mx-auto boxshadow"
+                  type="button"
+                >
+                  Show More
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+          }@else {
+          <div class="mt-8 mb-4">
+            <div class="w-full text-center text-cyan-800 mb-4">
+              <h2 class="heading_2 capitalize">No wallet transactions found</h2>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+} @defer() {
+<app-footer-section> </app-footer-section>
+}
+
+
+<div
+  class="fixed inset-0 bg-black/70 backdrop-blur-xl flex items-center justify-center p-4 z-50"
+  *ngIf="processingpaymentStatus === 'failed'"
+>
+  <!-- Error State (initially hidden) -->
+  <div
+    class="max-w-md w-full bg-gradient-to-br from-red-900/90 to-red-800/90 rounded-2xl shadow-2xl overflow-hidden border border-cyan-500/20"
+  >
+    <div class="p-8 text-center">
+      <div class="flex justify-center mb-6">
+        <div
+          class="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center"
+        >
+          <svg
+            class="w-12 h-12 text-red-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+      </div>
+      <p class="text-2xl font-bold text-white mb-2">Payment Failed</p>
+      <p class="text-red-100 mb-6">
+        We couldn't process your payment. Please try again.
+      </p>
+      <div class="flex flex-col md:flex-row gap-2">
+        <button
+          (click)="onRetryPayment()"
+          class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+        >
+          Retry Payment
+        </button>
+        <button
+          (click)="onCancelPayment()"
+          class="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="fixed inset-0 bg-black/70 backdrop-blur-xl flex items-center justify-center p-4 z-50"
+  *ngIf="processingpaymentStatus === 'processing'"
+>
+  <!-- Loading State (default) -->
+  <div
+    class="max-w-md w-full max-h-[90vh] flex flex-col bg-black rounded-2xl shadow-2xl overflow-hidden border border-cyan-500/20 capitalize"
+    *ngIf="processingpaymentStatus === 'processing'"
+  >
+    <!-- Header with gradient background (stays fixed) -->
+    <div class="relative bg-black p-6 text-center flex-shrink-0">
+      <div class="absolute top-4 right-4">
+        <div
+          class="flex items-center justify-center w-10 h-10 rounded-full bg-black"
+        >
+          <div class="text-white text-sm font-bold" id="countdown">
+            {{ getCountDownTimer() }}
+          </div>
+        </div>
+      </div>
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 bg-black rounded-full mx-auto"
+      >
+        <svg
+          class="w-8 h-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </div>
+      <p class="mt-4 text-2xl font-bold text-white">Processing Payment</p>
+      <p class="text-cyan-100 text-sm mt-2">
+        Please wait while we process your payment
+      </p>
+    </div>
+
+    <!-- Scrollable Content Area -->
+    <div class="flex-1 overflow-y-auto">
+      <div class="p-6 space-y-6">
+        <div class="bg-gray-950 rounded-xl p-6 border border-cyan-500/20">
+          <div class="flex flex-col items-center space-y-4">
+            <div
+              class="w-16 h-16 border-4 border-cyan-500/30 border-t-cyan-400 rounded-full animate-spin mb-2"
+            ></div>
+            <p class="text-center text-cyan-100">
+              <span class="block font-medium"
+                >Do not close this window or press back</span
+              >
+              <span class="text-sm text-cyan-300/80"
+                >This will automatically redirect you after completion</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Important Notice -->
+        <div class="bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r">
+          <div class="flex gap-2">
+            <svg
+              class="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+            <p class="ml-3 text-sm text-amber-100">
+              For security reasons, please complete the payment process without
+              refreshing or navigating away from this page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

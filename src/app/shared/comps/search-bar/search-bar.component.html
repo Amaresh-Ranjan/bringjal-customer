@@ -1,0 +1,30 @@
+<div class="row d-flex justify-content-center align-items-center pb-3">
+  <div class="col-12 pb-2">
+    <div class="alert alert-danger text-center" *ngIf="gpsError" role="alert">
+      {{ gpsError }}
+    </div>
+    <div class="input-group mb-3 zin">
+      <input
+        [formControl]="searchControl"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="off"
+        type="text"
+        name="placeSearch"
+        #search
+        type="text"
+        class="form-control zin"
+        placeholder="Enter your area"
+        aria-describedby="button-addon2"
+        aria-label="Search"
+      />
+      <button
+        (click)="findMe()"
+        class="btn btn-sm btn-success"
+        id="btnGroupAddon"
+      >
+        <i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;LOCATE ME
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,213 @@
+@use "sass:color";
+
+// Variables
+$sidebar-bg: #0a2c3b;
+$header-bg: #0f1f25;
+$text-color: #ffffff;
+$hover-bg: #4f7f94;
+$active-bg: #446370;
+$avatar-bg: #008b9d;
+$transition-duration: 0.3s;
+$sidebar-width-collapsed: 80px;
+$sidebar-width-expanded: 250px;
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: $sidebar-width-collapsed;
+  background: $sidebar-bg;
+  color: $text-color;
+  transition: width $transition-duration ease;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+
+  &.expanded {
+    width: $sidebar-width-expanded;
+
+    .chevron::before {
+      transform: rotate(-135deg);
+    }
+
+    .nav-title {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: $header-bg;
+  height: 70px;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-avatar {
+  height: 45px;
+  border-radius: 10px;
+  background-color: $avatar-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: $text-color;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-left: auto;
+  color: rgba($text-color, 0.7);
+  transition: color $transition-duration ease;
+
+  &:hover {
+    color: $text-color;
+  }
+}
+
+.chevron {
+  &::before {
+    border-style: solid;
+    border-width: 0.15em 0.15em 0 0;
+    content: "";
+    display: inline-block;
+    height: 0.45em;
+    width: 0.45em;
+    position: relative;
+    transform: rotate(45deg);
+    transition: transform $transition-duration ease;
+  }
+}
+
+.nav-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+}
+
+.sidebar-nav {
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin: 0.25rem 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: rgba($text-color, 0.7);
+  transition: all $transition-duration ease;
+  border-radius: 8px;
+  margin: 0 0.5rem;
+
+  &:hover,
+  &.active {
+    background: $hover-bg;
+    color: $text-color;
+  }
+
+  &.active {
+    background: $active-bg;
+  }
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+}
+
+.nav-title {
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-duration ease,
+    visibility $transition-duration ease;
+}
+
+.sidebar-footer {
+  width: 100%;
+  padding: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  background: $sidebar-bg;
+  box-sizing: border-box;
+
+  .logout-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: inherit;
+    font-family: inherit;
+    color: rgba($text-color, 0.7);
+    transition: all $transition-duration ease;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background: $hover-bg;
+      color: $text-color;
+    }
+  }
+}

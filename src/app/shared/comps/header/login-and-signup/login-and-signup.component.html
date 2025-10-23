@@ -1,0 +1,23 @@
+@if (loaderEnable()) {
+  <app-custom-loader></app-custom-loader>
+}
+
+@else{
+
+  @if(userLoggedIn){
+    
+      <div class="dropstart">
+        <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person"></i>Hi {{userName}}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-bg">
+          <li><a class="dropdown-item" (click)="goToDashboard()"><i class="bi bi-person-lines-fill"></i> My Dashboard</a></li>
+          <li><a class="dropdown-item" (click)="onLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+          
+        </ul>
+      </div>
+  }
+  @else {
+    <button (click)="openModalLogin()" class="btn btn-outline-success" type="submit"><i class="bi bi-person-circle"></i> Login/Signup</button>
+  }
+}

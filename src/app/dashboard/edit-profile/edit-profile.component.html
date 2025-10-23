@@ -1,0 +1,1097 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+} @else {
+<div class="w-full header sticky top-0 z-50">
+  @if(!mainSection && addressSection){
+  <h1 class="text-center heading_1 text-cyan-800">Edit Address</h1>
+  } @if(!mainSection && (mobileSection || otpSection)){
+  <h1 class="text-center heading_1 text-cyan-800">Edit Mobile</h1>
+  } @if(!mainSection && emailSection){
+  <h1 class="text-center heading_1 text-cyan-800">Edit Email</h1>
+  } @if(!mainSection && nameSection){
+  <h1 class="text-center heading_1 text-cyan-800">Edit Name</h1>
+  } @if(mainSection && !addressSection && !nameSection && !emailSection &&
+  !otpSection){
+  <h1 class="text-center heading_1 text-cyan-800">Edit Profile</h1>
+  }
+</div>
+@if(!userSubscribed) {
+<div class="max-w-screen-2xl mx-auto px-4">
+  <div class="pt-12">
+    <h1 class="text-center heading_1 text-red-600">
+      Subscribe to our water can package and track previous orders
+    </h1>
+  </div>
+</div>
+}
+<!-- Main Section -->
+@if(mainSection){
+<div class="min-h-screen flex items-start justify-center p-4 md:p-6">
+  <div class="w-full">
+    <!-- Card Body -->
+    <div class="p-4 md:p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Personal Information -->
+        <div
+          class="bg-cyan-50 rounded-xl p-4 md:p-6 border border-cyan-100 shadow-xl"
+        >
+          <h3
+            class="heading_3 text-cyan-800 mb-4 pb-2 border-b border-cyan-200"
+          >
+            Personal Information
+          </h3>
+          <!-- Name Field -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 border-b border-cyan-100"
+          >
+            <div class="mb-2 sm:mb-0">
+              <p class="text-sm text-cyan-700">Full Name</p>
+              <p class="font-medium text-cyan-900">
+                {{ userData.name || "Not provided" }}
+              </p>
+            </div>
+            <button
+              type="button"
+              (click)="editName()"
+              class="mt-2 sm:mt-0 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition duration-200 text-sm font-medium flex items-center gap-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+
+          <!-- Email Field -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 border-b border-cyan-100"
+          >
+            <div class="mb-2 sm:mb-0">
+              <p class="text-sm text-cyan-700">Email Address</p>
+              <p class="font-medium text-cyan-900">
+                {{ userData.email || "Not provided" }}
+              </p>
+            </div>
+            <button
+              type="button"
+              (click)="editEmail()"
+              class="mt-2 sm:mt-0 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition duration-200 text-sm font-medium flex items-center gap-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+
+          <!-- Mobile Field -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3"
+          >
+            <div class="mb-2 sm:mb-0">
+              <p class="text-sm text-cyan-700">Mobile Number</p>
+              <p class="font-medium text-cyan-900">
+                {{ userData.mobile || "Not provided" }}
+              </p>
+            </div>
+            <button
+              type="button"
+              (click)="editMobile()"
+              class="mt-2 sm:mt-0 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition duration-200 text-sm font-medium flex items-center gap-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+        </div>
+
+        <!-- Address Information -->
+         @if(userAddressAttached){
+        <div
+          class="bg-cyan-50 rounded-xl p-4 md:p-6 border border-cyan-100 shadow-xl"
+        >
+          <div
+            class="flex md:flex-row flex-col justify-between items-center mb-4 pb-2 border-b border-cyan-200"
+          >
+            <h3 class="heading_3 text-cyan-800">Address Details</h3>
+            <button
+              type="button"
+              (click)="editAddress()"
+              class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition duration-200 text-sm font-medium flex items-center gap-1.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+              Edit Address
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-cyan-700">Primary Address</p>
+              <p class="font-medium text-cyan-900">
+                {{ userAddress.primary_address || "Not provided" }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm text-cyan-700">Secondary Address</p>
+              <p class="font-medium text-cyan-900">
+                {{ userAddress.secondary_address || "Not provided" }}
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm text-cyan-700">Landmark</p>
+              <p class="font-medium text-cyan-900">
+                {{ userAddress.landmark || "Not provided" }}
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-cyan-700">Lift Available</p>
+                <p class="font-medium text-cyan-900">
+                  @if(userAddress.lift === true) { Yes } @if(userAddress.lift
+                  === false) { No }
+                </p>
+              </div>
+              <div>
+                <p class="text-sm text-cyan-700">Floor</p>
+                <p class="font-medium text-cyan-900">
+                  {{ userAddress.floor  }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+       }
+      </div>
+    </div>
+  </div>
+</div>
+}
+<!-- Edit Section -->
+<!-- Name Section -->
+@if(nameSection){
+<div class="px-4">
+  <!-- Back Button -->
+  <div class="mb-6">
+    <button
+      type="button"
+      (click)="backToMainSection()"
+      class="text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+    >
+      <svg
+        class="w-4 h-4 mr-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Back to Profile
+    </button>
+  </div>
+  <div class="min-h-screen flex items-start justify-center">
+    <div class="w-full">
+      <!-- Main Card -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+      >
+        <!-- Card Header -->
+        <div
+          class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+        >
+          <h2 class="text-xl md:text-2xl font-semibold">Edit Name</h2>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-4 md:p-6">
+          @if(nameError){
+          <div
+            class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded"
+            role="alert"
+          >
+            <div class="flex">
+              <svg
+                class="w-5 h-5 text-red-500 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="font-medium">{{ nameError }}</p>
+            </div>
+          </div>
+          }
+
+          <form [formGroup]="nameForm" (ngSubmit)="saveUsername()">
+            <!-- Name Input -->
+            <div class="mb-6">
+              <label
+                class="block text-cyan-800 text-sm font-medium mb-2"
+                for="name"
+              >
+                Full Name
+              </label>
+              <input
+                class="w-full px-4 py-3 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                type="text"
+                placeholder="Enter your full name"
+                formControlName="username"
+                aria-label="Full Name"
+                [class.border-red-300]="
+                  nameForm.get('username')?.touched &&
+                  nameForm.get('username')?.invalid
+                "
+              />
+              <div
+                class="text-red-500 text-xs mt-1.5 ml-1"
+                *ngIf="
+                  nameForm.get('username')?.touched &&
+                  nameForm.get('username')?.invalid
+                "
+              >
+                <span *ngIf="nameForm.get('username')?.errors?.['required']"
+                  >Name is required</span
+                >
+                <span *ngIf="nameForm.get('username')?.errors?.['minlength']">
+                  Name must be at least
+                  {{ nameForm.get('username')?.errors?.['minlength']?.requiredLength }}
+                  characters
+                </span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8">
+              <button
+                type="submit"
+                [disabled]="!nameForm.valid"
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200 ease-in-out flex items-center justify-center"
+                [class.opacity-50]="!nameForm.valid"
+                [class.cursor-not-allowed]="!nameForm.valid"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<!-- Mobile Section -->
+@if(mobileSection){
+<div class="px-4">
+  <!-- Back Button -->
+  <div class="mb-6">
+    <button
+      type="button"
+      (click)="backToMainSection()"
+      class="text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+    >
+      <svg
+        class="w-4 h-4 mr-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Back to Profile
+    </button>
+  </div>
+  <div class="min-h-screen flex items-start justify-center">
+    <div class="w-full">
+      <!-- Main Card -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+      >
+        <!-- Card Header -->
+        <div
+          class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+        >
+          <h2 class="text-xl md:text-2xl font-semibold">Edit Mobile Number</h2>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-4 md:p-6">
+          @if(mobileError){
+          <div
+            class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded"
+            role="alert"
+          >
+            <div class="flex">
+              <svg
+                class="w-5 h-5 text-red-500 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="font-medium">{{ mobileError }}</p>
+            </div>
+          </div>
+          }
+
+          <form [formGroup]="mobileForm" (ngSubmit)="saveMobileNumber()">
+            <!-- Name Input -->
+            <div class="mb-6">
+              <label
+                class="block text-cyan-800 text-sm font-medium mb-2"
+                for="mobileNumber"
+              >
+                Mobile Number
+              </label>
+              <input
+                class="w-full px-4 py-3 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                type="text"
+                placeholder="Enter your full name"
+                formControlName="mobileNumber"
+                aria-label="Full Name"
+                [class.border-red-300]="
+                  mobileForm.get('mobileNumber')?.touched &&
+                  mobileForm.get('mobileNumber')?.invalid
+                "
+              />
+              <div
+                class="text-red-500 text-xs mt-1.5 ml-1"
+                *ngIf="
+                  mobileForm.get('mobileNumber')?.touched &&
+                  mobileForm.get('mobileNumber')?.invalid
+                "
+              >
+                <span
+                  *ngIf="mobileForm.get('mobileNumber')?.errors?.['required']"
+                  >Mobile Number is required</span
+                >
+                <span
+                  *ngIf="mobileForm.get('mobileNumber')?.errors?.['minlength']"
+                >
+                  Mobile Number must be at least
+                  {{ mobileForm.get('mobileNumber')?.errors?.['minlength']?.requiredLength }}
+                  characters
+                </span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8">
+              <button
+                type="submit"
+                [disabled]="!mobileForm.valid"
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200 ease-in-out flex items-center justify-center"
+                [class.opacity-50]="!mobileForm.valid"
+                [class.cursor-not-allowed]="!mobileForm.valid"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} @if(otpSection){
+<div class="px-4">
+  <!-- Back Button -->
+  <div class="mb-6">
+    <button
+      type="button"
+      (click)="backToMainSection()"
+      class="text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+    >
+      <svg
+        class="w-4 h-4 mr-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Back to Profile
+    </button>
+  </div>
+  <div class="min-h-screen flex items-start justify-center">
+    <div class="w-full">
+      <!-- Main Card -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+      >
+        <!-- Card Header -->
+        <div
+          class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+        >
+          <h2 class="text-xl md:text-2xl font-semibold">Update OTP</h2>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-4 md:p-6">
+          @if(errFOtp || errorMessageOtp){
+          <div
+            class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <p class="font-bold">{{ errFOtp || errorMessageOtp }}</p>
+          </div>
+          }
+
+          <form [formGroup]="otpForm" (ngSubmit)="updateMobilenumberOTP()">
+            <!-- Name Input -->
+            <div class="mb-6">
+              <label
+                class="block text-cyan-800 text-sm font-medium mb-2"
+                for="otp"
+              >
+                Please Enter OTP Delivered To Your New Mobile Number
+              </label>
+              <input
+                class="w-full px-4 py-3 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                type="text"
+                placeholder="Enter OTP"
+                formControlName="otp"
+                aria-label="OTP"
+                [class.border-red-300]="
+                  otpForm.get('otp')?.touched && otpForm.get('otp')?.invalid
+                "
+              />
+              <div
+                class="text-red-500 text-xs mt-1.5 ml-1"
+                *ngIf="
+                  otpForm.get('otp')?.touched && otpForm.get('otp')?.invalid
+                "
+              >
+                <span *ngIf="otpForm.get('otp')?.errors?.['required']"
+                  >OTP is required</span
+                >
+                <span *ngIf="otpForm.get('otp')?.errors?.['minlength']">
+                  OTP must be at least
+                  {{ otpForm.get('otp')?.errors?.['minlength']?.requiredLength }}
+                  characters
+                </span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8">
+              <button
+                type="submit"
+                [disabled]="!otpForm.valid"
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200 ease-in-out flex items-center justify-center"
+                [class.opacity-50]="!otpForm.valid"
+                [class.cursor-not-allowed]="!otpForm.valid"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Update OTP
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<!-- Email Section -->
+@if(emailSection){
+<div class="px-4">
+  <!-- Back Button -->
+  <div class="mb-6">
+    <button
+      type="button"
+      (click)="backToMainSection()"
+      class="text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+    >
+      <svg
+        class="w-4 h-4 mr-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Back to Profile
+    </button>
+  </div>
+  <div class="min-h-screen flex items-start justify-center">
+    <div class="w-full">
+      <!-- Main Card -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+      >
+        <!-- Card Header -->
+        <div
+          class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+        >
+          <h2 class="text-xl md:text-2xl font-semibold">Edit Email</h2>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-4 md:p-6">
+          @if(emailError){
+          <div
+            class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded"
+            role="alert"
+          >
+            <div class="flex">
+              <svg
+                class="w-5 h-5 text-red-500 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="font-medium">{{ emailError }}</p>
+            </div>
+          </div>
+          }
+
+          <form [formGroup]="emailForm" (ngSubmit)="saveEmail()">
+            <!-- Name Input -->
+            <div class="mb-6">
+              <label
+                class="block text-cyan-800 text-sm font-medium mb-2"
+                for="email"
+              >
+                Email Address
+              </label>
+              <input
+                class="w-full px-4 py-3 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                type="text"
+                placeholder="Enter your full name"
+                formControlName="email"
+                aria-label="Full Name"
+                [class.border-red-300]="
+                  emailForm.get('email')?.touched &&
+                  emailForm.get('email')?.invalid
+                "
+              />
+              <div
+                class="text-red-500 text-xs mt-1.5 ml-1"
+                *ngIf="
+                  emailForm.get('email')?.touched &&
+                  emailForm.get('email')?.invalid
+                "
+              >
+                <span *ngIf="emailForm.get('email')?.errors?.['required']"
+                  >Email is required</span
+                >
+                <span *ngIf="emailForm.get('email')?.errors?.['minlength']">
+                  Email must be at least
+                  {{ emailForm.get('email')?.errors?.['minlength']?.requiredLength }}
+                  characters
+                </span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8">
+              <button
+                type="submit"
+                [disabled]="!emailForm.valid"
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200 ease-in-out flex items-center justify-center"
+                [class.opacity-50]="!emailForm.valid"
+                [class.cursor-not-allowed]="!emailForm.valid"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<!-- Address Section -->
+@if(addressSection){
+<div class="px-4 py-8">
+  <div class="max-w-screen-2xl mx-auto">
+    @if(searchAddressSection){
+    <!-- Search Address Card -->
+    <div
+      class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100 mb-8"
+    >
+      <!-- Card Header -->
+      <div
+        class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+      >
+        <h2 class="text-xl md:text-2xl font-semibold">Search New Address</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-6">
+        <button
+          type="button"
+          (click)="backToProfileSection()"
+          class="mb-6 text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+        >
+          <svg
+            class="w-4 h-4 mr-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Profile
+        </button>
+          @if(searchAddressError){
+          <div
+            class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded"
+            role="alert"
+          >
+            <div class="flex">
+              <svg
+                class="w-5 h-5 text-red-500 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="font-medium">{{ searchAddressError }}</p>
+            </div>
+          </div>
+          }
+        <div class="space-y-6">
+          <h3
+            class="text-xl md:text-2xl font-semibold text-cyan-800 text-center mb-4 capitalize"
+          >
+            Enter the new location address in below search field
+          </h3>
+          <app-search-bar
+            (loaderCallEmit)="callLoaderSearchBar($event)"
+            (searchDataRecieved)="handleSearchDataRecieved($event)"
+          ></app-search-bar>
+        </div>
+      </div>
+    </div>
+    } @if((!productMatch || !productQtyRequirementSatisfied) &&
+    searchCondition||!inside()){
+    <!-- Not Available Card -->
+    <div
+      class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+    >
+      <div
+        class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+      >
+        <h2 class="text-xl md:text-2xl font-semibold">Service Availability</h2>
+      </div>
+
+      <div class="p-6 space-y-6">
+         @if(!inside()){
+        <p class="text-lg text-cyan-800 text-center">
+          Currently we are not available in your area, please contact our
+          customer Support.
+        </p>
+        }@else {
+          @if(!productMatch){
+        <p class="text-lg text-cyan-800 text-center">
+          Your subscribed watercan is not available in this area, please raise
+          customer ticket by clicking below.
+          In this area watercan is available with minimum of
+          {{ minimum_required_quantity }} and maximum of {{ maximum_quantity }} quantity.
+        </p>
+        <p *ngIf="minimum_required_quantity<=1"><b>One Watercan Price : </b>₹{{priceOneCan}}/-</p>
+        <p *ngIf="minimum_required_quantity<=2"><b>Two Watercans Price : </b>₹{{priceTwoCans}}/-</p>
+        <p *ngIf="minimum_required_quantity<=3"><b>Three Watercans Price : </b>₹{{priceThreeCans}}/-</p>
+        <p *ngIf="minimum_required_quantity<=4"><b>Four Watercans Price : </b>₹{{priceFourCans}}/-</p>
+        <p *ngIf="deposit"><b>Deposit Per Can : </b>₹{{deposit}}/-</p>
+        }
+         @if(productMatch && !productQtyRequirementSatisfied){
+        <p class="text-lg text-cyan-800 text-center">
+          In this area watercan is available with minimum of
+          {{ minimum_required_quantity }} and maximum of {{ maximum_quantity }} watercans quantity.
+          Please first change the watercan Quantity in Modify Package section in
+          dashboard for going to another area.
+        </p>
+        }
+        }
+         @if(!productMatch || !inside()){
+        <div class="text-center pt-4">
+          <button
+            type="button"
+            (click)="takeToCustomerSupportSection()"
+            class="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200"
+          >
+            Contact Customer Support
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+    } @if((mapSection && productMatch && inside() &&
+    productQtyRequirementSatisfied) && !searchAddressSection){
+    <!-- Address Form Card -->
+    <div
+      class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100"
+    >
+      <!-- Card Header -->
+      <div
+        class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white"
+      >
+        <h2 class="text-xl md:text-2xl font-semibold">Update Your Address</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-6">
+        <button
+          type="button"
+          (click)="backToMainSection()"
+          class="mb-6 text-cyan-600 hover:text-cyan-800 font-medium py-2 px-3 rounded-lg transition duration-200 ease-in-out flex items-center text-sm bg-cyan-50 hover:bg-cyan-100 border border-cyan-100"
+        >
+          <svg
+            class="w-4 h-4 mr-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Profile
+        </button>
+
+        @if(adddressError){
+          <div
+            class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded"
+            role="alert"
+          >
+            <div class="flex">
+              <svg
+                class="w-5 h-5 text-red-500 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="font-medium">{{ adddressError }}</p>
+            </div>
+          </div>
+          }
+
+        <form [formGroup]="addressForm" class="space-y-6">
+          <h3 class="text-xl font-semibold text-cyan-800 text-center mb-4">
+            Drag the Pin to your exact location
+          </h3>
+
+          <!-- Map Section -->
+          <div
+            class="bg-cyan-50 rounded-xl overflow-hidden border border-cyan-100"
+          >
+            <google-map
+              width="100%"
+              height="250px"
+              [center]="center"
+              [zoom]="zoom"
+              class="rounded-lg"
+            >
+              <map-marker
+                [position]="markerPosition"
+                [options]="markerOptions"
+                (mapDragend)="markerDragEnd($event)"
+              ></map-marker>
+            </google-map>
+          </div>
+
+          <!-- Address Form -->
+          <div class="space-y-6">
+            <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-100">
+              <p class="text-sm font-medium text-cyan-700 mb-1">
+                Primary Address:
+              </p>
+              <p class="text-cyan-900 font-medium">{{ primaryAddress }}</p>
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-medium text-cyan-800 mb-2"
+                for="SecondaryAddress"
+              >
+                Secondary Address
+              </label>
+              <input
+                type="text"
+                id="SecondaryAddress"
+                formControlName="SecondaryAddress"
+                class="w-full px-4 py-2.5 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                placeholder="Enter your Secondary Address"
+                [class.border-red-300]="
+                  addressForm.get('SecondaryAddress')?.touched &&
+                  addressForm.get('SecondaryAddress')?.invalid
+                "
+              />
+              @if(addressForm.get('SecondaryAddress')?.touched &&
+              addressForm.get('SecondaryAddress')?.errors?.['required']) {
+              <p class="mt-1.5 text-sm text-red-600">
+                Secondary Address is required
+              </p>
+              }
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-medium text-cyan-800 mb-2"
+                for="LandMark"
+              >
+                Land Mark
+              </label>
+              <input
+                type="text"
+                id="LandMark"
+                formControlName="LandMark"
+                class="w-full px-4 py-2.5 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                placeholder="Enter your Land Mark"
+                [class.border-red-300]="
+                  addressForm.get('LandMark')?.touched &&
+                  addressForm.get('LandMark')?.invalid
+                "
+              />
+              @if(addressForm.get('LandMark')?.touched &&
+              addressForm.get('LandMark')?.errors?.['required']) {
+              <p class="mt-1.5 text-sm text-red-600">Land Mark is required</p>
+              }
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  class="block text-sm font-medium text-cyan-800 mb-2"
+                  for="Floor"
+                >
+                  Floor
+                </label>
+                <input
+                  type="number"
+                  id="Floor"
+                  formControlName="Floor"
+                  class="w-full px-4 py-2.5 rounded-lg border border-cyan-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                  placeholder="Enter floor number"
+                  [class.border-red-300]="
+                    addressForm.get('Floor')?.touched &&
+                    addressForm.get('Floor')?.invalid
+                  "
+                />
+                @if(addressForm.get('Floor')?.touched &&
+                addressForm.get('Floor')?.errors?.['required']) {
+                <p class="mt-1.5 text-sm text-red-600">Floor is required</p>
+                }
+              </div>
+
+              <div>
+                <span class="block text-sm font-medium text-cyan-800 mb-2"
+                  >Lift Available</span
+                >
+                <div class="flex items-center space-x-6 mt-2">
+                  <label class="inline-flex items-center">
+                    <input
+                      type="radio"
+                      class="form-radio h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-cyan-300"
+                      name="liftAvailability"
+                      formControlName="Lift"
+                      [value]="true"
+                    />
+                    <span class="ml-2 text-cyan-800">Yes</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input
+                      type="radio"
+                      class="form-radio h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-cyan-300"
+                      name="liftAvailability"
+                      formControlName="Lift"
+                      [value]="false"
+                    />
+                    <span class="ml-2 text-cyan-800">No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+              <button
+                type="submit"
+                (click)="saveAddress()"
+                [disabled]="addressForm.invalid"
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition duration-200 ease-in-out flex items-center justify-center"
+                [class.opacity-50]="addressForm.invalid"
+                [class.cursor-not-allowed]="addressForm.invalid"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Save Address
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}
+<!-- Footer Section -->
+@defer() {
+<app-footer-section></app-footer-section>
+} }

@@ -1,0 +1,95 @@
+
+<div class="d-flex justify-content-center" *ngIf="loader">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<div class="container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <div class="alert alert-danger" *ngIf="errSignup" role="alert">{{errSignup}}</div>
+            </div>
+            <div class="col-12 pt-1">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" formControlName="name"/>
+                    <label for="name"><i class="fas fa-mobile"></i> Name</label>
+                  </div>
+                <small *ngIf="!signupForm.get('name')?.valid && signupForm.get('name')?.touched">
+                    <div  class="text-danger" *ngIf="signupForm.get('name')?.errors?.['required']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Username is Required</div>
+                  </small>
+            </div>
+            <div class="col-12 pt-1">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email"/>
+                    <label for="email"><i class="fas fa-email"></i> Email</label>
+                  </div>
+                <small *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+                    <div class="text-danger" *ngIf="signupForm.get('email')?.errors?.['required'] && !signupForm.get('email')?.errors?.['email']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Email
+                      address is Required</div>
+                    <div class="text-danger" *ngIf="signupForm.get('email')?.errors?.['email']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Please Enter valid Email address</div>
+                  </small>
+            </div>
+            <div class="col-12 pt-1">
+                <div class="form-floating mb-3">
+                    <input type="mobile" class="form-control" id="tel" name="mobile" formControlName="mobile"/>
+                    <label for="tel"><i class="fas fa-mobile"></i> Mobile Number</label>
+                  </div>
+                <small *ngIf="!signupForm.get('mobile')?.valid && signupForm.get('mobile')?.touched">
+                    <div class="text-danger" *ngIf="signupForm.get('mobile')?.errors?.['required']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Mobile Number is Required</div>
+                    <div class="text-danger" *ngIf="signupForm.get('mobile')?.errors?.['pattern']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Please Enter valid Mobile Number</div>
+                  </small>
+            </div>
+            <div class="col-12 pt-1">
+              <div class="form-floating mb-3 position-relative">
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="password" 
+                  name="password" 
+                  formControlName="password" 
+                  #passwordInput
+                />
+                <label for="password">
+                  <i class="fas fa-key"></i> Password
+                </label>
+                <i 
+                  class="bi" 
+                  [ngClass]="{'bi-eye-slash': showPassword, 'bi-eye': !showPassword}" 
+                  (click)="togglePasswordVisibility()" 
+                  style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"
+                ></i>
+              </div>
+                <small *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched" class="form-text text-muted red-text">
+                    <div class="text-danger" *ngIf="signupForm.get('password')?.errors?.['required']">
+                      <span class="p-2"><i class="bi bi-exclamation-circle-fill"></i></span>Password is Required</div>
+                  </small>
+            </div>
+            <div class="col-12 pt-1" >
+              @if(showReferral){
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="referral" name="referral" formControlName="referral"/>
+                  <label for="referral"><i class="fas fa-mobile"></i> Referral</label>
+                </div>
+              }
+              @else{
+                <p>
+                  <a (click)="showReferral = !showReferral" class="green-text">Have a Referral Code? Click here</a>
+              </p>
+              }
+                
+                
+            </div>
+            <div class="col-12 pt-2 d-grid gap-2">
+                <button class="btn btn-success" [disabled]="!signupForm.valid || dBtnSignup" type="submit">Signup</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

@@ -1,0 +1,234 @@
+@if (loaderEnable()) {
+<app-custom-loader></app-custom-loader>
+} @else { @if(orderActive){
+<div class="header sticky top-0 z-50">
+  <h1 class="heading_1 text-center text-cyan-800">Place and Track Order</h1>
+</div>
+<div class="min-h-screen flex items-center justify-center p-4 md:p-6">
+  <div class="w-full max-w-screen-2xl">
+    <!-- Main Card -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100">
+      <!-- Card Header -->
+      <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4 md:p-6 text-center text-white">
+        <h2 class="text-xl md:text-2xl font-semibold">Your Order Status</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-4 md:p-6">
+        <!-- Status Message -->
+        <div class="bg-cyan-50 rounded-xl p-4 md:p-6 border border-cyan-100 mb-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 mr-4 text-cyan-500">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-cyan-800 mb-2">
+                Order Update
+              </h3>
+              <p class="text-green-700">
+                {{
+                  order?.eta.eta_message ||
+                    "Your order is being processed. We will update you with the status soon."
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+          @if (order?.order_footprints?.length > 0) {
+  <div class="bg-cyan-50 rounded-xl p-4 md:p-6 border border-cyan-100 mb-6">
+    <div class="flex items-start">
+      <div class="flex-shrink-0 mr-4 text-cyan-500">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-medium text-cyan-800 mb-2">
+          Order Current Status
+        </h3>
+       <div class="flex justify-between gap-8">
+  <p class="text-green-700">
+    @if(order.order_footprints[order.order_footprints.length - 1]?.footprint_type=='Watercan_Qty_update'){
+    {{ order.order_footprints[order.order_footprints.length - 1]?.description}}
+    }@else {
+       {{ orderStatus[order.order_footprints[order.order_footprints.length - 1]?.footprint_type] }}
+    }
+  </p>
+  <p class="text-green-700">
+    {{ order.order_footprints[order.order_footprints.length - 1]?.timestamp | date:'medium' }}
+  </p>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+}
+
+        <!-- Order Details -->
+        <div class="text-cyan-700">
+          <app-order-details-section [order]="order"></app-order-details-section>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-center mt-6">
+          <button (click)="cancelOrder()"
+            class="px-6 py-2.5 bg-white border-2 border-red-500 text-red-600 font-medium text-sm leading-tight uppercase rounded-lg shadow-md hover:bg-red-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
+            Cancel Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} @else { @if(userData.status.subscribed===false){
+<div class="header sticky top-0 z-50">
+  <h1 class="heading_1 text-center text-cyan-800">Place Order</h1>
+</div>
+<div class="min-h-screen flex items-center justify-center p-3 md:p-5">
+  <div class="w-full max-w-screen-2xl">
+    <!-- Main Card -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100">
+      <!-- Card Header -->
+      <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-2 md:p-6 text-center text-white">
+        <h2 class="text-2xl font-semibold">Subscription Required</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-2 md:p-6 capitalize">
+        <div class="bg-cyan-50 rounded-xl p-2 md:p-6 border border-cyan-100">
+          <div class="text-center">
+            <h2 class="text-xl font-semibold text-cyan-800 mb-4">
+              In order to subscribe to a package, please first place an
+              installation order
+            </h2>
+            <p class="text-cyan-700">
+              Click the button below to get started with your subscription
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full text-center mt-5">
+      <button (click)="goToProductSelectionPage()" type="button" class="button">
+        <div class="button-top">Subscribe Package</div>
+        <div class="button-bottom"></div>
+        <div class="button-base"></div>
+      </button>
+    </div>
+  </div>
+</div>
+}@else{
+<!-- Order not active -->
+<div class="header sticky top-0 z-50">
+  <h1 class="heading_1 text-center text-cyan-800">Place and Track Order</h1>
+</div>
+<div class="flex items-center justify-center p-5">
+  <div class="w-full max-w-screen-2xl">
+    <!-- Main Card -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-cyan-100">
+      <!-- Card Header -->
+      <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-2 md:p-6 text-center text-white">
+        <h2 class="text-2xl font-semibold">Order Summary</h2>
+      </div>
+
+      <!-- Card Body -->
+      <div class="p-2 md:p-6">
+        <div class="bg-cyan-50 rounded-xl p-2 md:p-6 border border-cyan-100 mb-6">
+          <!-- Brinjal Cash -->
+          <div class="flex justify-between items-center py-3 border-b border-cyan-100">
+            <span class="text-cyan-700 font-medium">Brinjal Cash</span>
+            <span class="font-semibold text-cyan-800">&#8377;{{ bringjalCash }}/-</span>
+          </div>
+
+          <!-- Watercans Quantity -->
+          <div class="flex justify-between items-center py-3 border-b border-cyan-100">
+            <span class="text-cyan-700 font-medium">Watercans Quantity</span>
+            <span class="font-semibold text-cyan-800">{{ package_subscription_qty }} Cans</span>
+          </div>
+
+          <!-- Order Total -->
+          <div class="flex justify-between items-center pt-4">
+            <span class="text-lg font-semibold text-cyan-800">Order Total</span>
+            <span class="text-xl font-bold text-cyan-700">
+              &#8377;{{
+              perItemPriceAfterDiscountsChargesAndTaxes *
+              package_subscription_qty
+              }}/-
+            </span>
+          </div>
+        </div>
+
+        <!-- ETA Notice -->
+        <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-4 flex items-start">
+          <svg class="w-6 h-6 text-cyan-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h.01a1 1 0 100-2H10V9z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-cyan-800">{{ eta }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w-full text-center">
+  <div class="w-full mb-10">
+    <button (click)="placeOrderAndPayLater()" type="button" class="button">
+      <div class="button-top">
+        Place Order For {{ package_subscription_qty }} Watercans.
+      </div>
+      <div class="button-bottom"></div>
+      <div class="button-base"></div>
+    </button>
+  </div>
+</div>
+} } @if (userData?.PendingAmount>0 ) {
+<div class="px-4">
+  <div class="w-full text-center text-cyan-800 mb-4">
+    <h2 class="heading_2 capitalize">Previous Pending Payment</h2>
+  </div>
+  <div class="mt-8 mb-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+      @for (pending of userData?.PendingAmountDetails; track $index) {
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800">
+              <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              Pending Payment
+            </span>
+            <span class="text-gray-600 heading_5">{{pending?.timestamp|date}}</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Amount Due</span>
+              <span class="font-medium text-gray-900">&#8377;{{ pending?.amount }}</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Order ID</span>
+              <span class="font-mono text-sm text-cyan-600 bg-cyan-50 px-2 py-1 rounded">{{ pending?.orderId }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+} } @defer() {
+<app-footer-section></app-footer-section>
+}

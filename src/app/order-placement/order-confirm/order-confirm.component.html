@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col-12">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-6">
+          <ng-lottie weight="100%" [options]="options"></ng-lottie>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12">
+          <div class="alert alert-warning mt-1" role="alert">
+            <h1 class="text-center text-success pt-3">
+              {{ orderDetails?.eta.eta_message }}
+            </h1>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="alert alert-danger mt-1" role="alert">
+            <p class="text-center text-danger pt-3">
+              Kindly note that pickup charges of 60/- has to be paid by
+              customers, if customers want to cancel suscription before
+              succesful completion of 3 order deliveries. This is to avoid
+              losses caused by temporary customers. You can cancel order anytime
+              by clicking on cancel button which will be available till your
+              order is out for delivery.
+            </p>
+          </div>
+        </div>
+        <div class="col-12 mb-5 text-center">
+          <button
+            type="button"
+            (click)="goToDashboard()"
+            class="btn btn-success"
+          >
+            <i class="bi bi-person-lines-fill"></i> Go To Dashboard
+          </button>
+        </div>
+        <!-- <div class="col-12 text-center">
+          <button
+            type="button"
+            (click)="cancelOrder()"
+            class="btn btn-outline-danger"
+          >
+            Cancel Order
+          </button>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-12 card bg-light mt-3 p-md-5 p-3">
+      <app-order-details-section
+        [order]="orderDetails"
+      ></app-order-details-section>
+    </div>
+  </div>
+</div>

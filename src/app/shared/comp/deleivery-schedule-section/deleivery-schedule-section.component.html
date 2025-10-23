@@ -1,0 +1,68 @@
+<div class="space-y-4 z-50">
+  <!-- Iterate over each day in the deliveryDays object -->
+  <!-- <div *ngFor="let day of objectKeys(deliveryDays)">
+    <div *ngIf="deliveryDays[day].enable && hasEnabledSlots(day)">
+      <div>
+        <button
+          class="w-full py-3 px-4 bg-cyan-100 text-gray-800 font-semibold rounded-lg text-left flex justify-between items-center"
+          (click)="toggleDropdown(day)"
+        >
+          <span class="text-lg">{{ day.toUpperCase() }}</span>
+          <svg
+            class="w-4 h-4 text-gray-600 transform transition-transform duration-200 ease-in-out"
+            [class.rotate-180]="selectedDay === day"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        <div
+          *ngIf="selectedDay === day"
+          class="block w-full mt-2 bg-cyan-500/10 border border-gray-300 rounded-lg shadow-lg overflow-hidden"
+          [ngClass]="{
+            'transition-all duration-300 ease-in-out opacity-100':
+              selectedDay === day,
+            'opacity-0 max-h-0': selectedDay !== day
+          }"
+        >
+          <ul class="p-2 space-y-2">
+            <li
+              *ngFor="
+                let message of generateDeliveryMessage(deliveryDays[day], day)
+              "
+            >
+              <p
+                class="text-gray-900 text-sm font-semibold"
+                [innerHTML]="message"
+              ></p>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div
+    class="max-w-screen mx-auto bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-lg rounded-lg overflow-hidden mb-6 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+    <div class="flex flex-col sm:flex-row items-center p-4 sm:p-6">
+      <i
+        class="bi bi-clock text-blue-600 mr-4 text-4xl sm:text-5xl transform transition-transform duration-200 hover:scale-110 mb-4 sm:mb-0"></i>
+
+      <div>
+        <p class="text-sm sm:text-base text-gray-800 font-semibold leading-relaxed mt-2 capitalize">
+          <i class="bi bi-truck mr-2 text-green-600 text-xl"></i>
+          If you place your order Now {{ eta.message }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
