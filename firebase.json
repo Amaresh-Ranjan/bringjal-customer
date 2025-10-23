@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/browser",
+    "public": "dist/bringjalWebsite2025/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
